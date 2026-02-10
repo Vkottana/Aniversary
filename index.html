@@ -16,6 +16,7 @@ body{
   overflow:hidden;
 }
 
+/* CARD */
 .card{
   background:white;
   padding:40px 60px;
@@ -25,6 +26,7 @@ body{
   position:relative;
 }
 
+/* BUTTONS */
 button{
   padding:12px 28px;
   font-size:18px;
@@ -34,23 +36,35 @@ button{
   margin:8px;
 }
 
+/* YES */
 #yes{
   background:#ff4d6d;
   color:white;
+  transition: transform 0.2s ease;
 }
 
+/* NO */
 #no{
-  background:#eee;
-  color:#444;
-  position:relative;
+  background:#f2f2f2;
+  color:#333;
+  font-weight:600;
+  position:absolute;
+  transition: all 0.2s ease;
+}
+
+/* Shake animation */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
 }
 </style>
 </head>
 
-
 <body>
 
-<!-- FIRST SCREEN -->
 <div class="card" id="mainCard">
   <h1>
     Siri 😜<br><br>
@@ -62,56 +76,66 @@ button{
   <button id="no">Cancel ❌</button>
 </div>
 
-
+<!-- Pop sound -->
+<audio id="popSound">
+  <source src="https://www.soundjay.com/buttons/sounds/button-16.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 const noBtn = document.getElementById("no");
 const yesBtn = document.getElementById("yes");
+const card  = document.getElementById("mainCard");
+const pop   = document.getElementById("popSound");
 
-
-
-/* ---------------- FUNNY NO LOOP ---------------- */
-
+/* FUNNY NO MESSAGES */
 const messages = [
   "Nice try 😜",
   "Cancellation not allowed 🚫",
   "Lifetime plan only ❤️",
   "Marriage is non-refundable 😂",
-  "Terms & conditions already accepted 📜",
   "Pandit ji approved already 🙏",
-  "Husband locked in forever 🔒",
   "Auto-renew enabled 😎",
-  "Ohooo trying escape ah? 😏",
-  "Button not working madam 😆",
-  "Wrong option detected ❌",
-  "Are you testing me? 😂",
-  "Stay with me naaa 🥺",
   "Still stuck with me forever 😘",
   "Press YES my love ❤️"
 ];
 
 let index = 0;
+let yesScale = 1;
 
 function escapeButton(){
+
+  // play pop sound
+  pop.currentTime = 0;
+  pop.play();
+
+  // change text
   noBtn.innerText = messages[index];
   index = (index + 1) % messages.length;
 
-  noBtn.style.position="absolute";
-  noBtn.style.left=Math.random()*80+"%";
-  noBtn.style.top=Math.random()*80+"%";
+  // keep inside card
+  const maxX = card.offsetWidth - noBtn.offsetWidth - 20;
+  const maxY = card.offsetHeight - noBtn.offsetHeight - 20;
+
+  noBtn.style.left = Math.random() * maxX + "px";
+  noBtn.style.top  = Math.random() * maxY + "px";
+
+  // shake effect
+  noBtn.style.animation = "shake 0.3s";
+  setTimeout(() => noBtn.style.animation = "", 300);
+
+  // YES grows 😄
+  yesScale += 0.08;
+  yesBtn.style.transform = `scale(${yesScale})`;
 }
 
 noBtn.addEventListener("mouseover", escapeButton);
 noBtn.addEventListener("click", escapeButton);
 
-
-
-/* ---------------- YES CLICK CELEBRATION ---------------- */
-
+/* YES CLICK */
 yesBtn.onclick = () => {
 
-  // 🎵 music (put love.mp3 in same folder)
   const music = new Audio("love.mp3");
+  music.volume = 0.6;
   music.loop = true;
   music.play();
 
@@ -123,16 +147,14 @@ yesBtn.onclick = () => {
       justify-content:center;
       align-items:center;
       text-align:center;
-      font-family:Arial;
       background:linear-gradient(135deg,#ffd6e0,#ffeef6);
       padding:20px;
     ">
 
-      <!-- your photo -->
       <img src="siri.jpg"
            style="
-             width:230px;
-             height:230px;
+             width:240px;
+             height:240px;
              object-fit:cover;
              border-radius:50%;
              border:6px solid #ff4d6d;
@@ -140,11 +162,10 @@ yesBtn.onclick = () => {
              margin-bottom:25px;
            ">
 
-      <h1 style="font-size:55px;">💖 Subscription Renewed! 💖</h1>
-
+      <h1 style="font-size:50px;">💖 Subscription Renewed! 💖</h1>
       <h2>Hehehe you had no choice 😜</h2>
       <h2>Happy Anniversary my love Siri ❤️</h2>
-      <h3>Forever yours 💕</h3>
+      <h3>Forever yours 💕<br>– Vasu</h3>
 
     </div>
   `;
@@ -153,69 +174,46 @@ yesBtn.onclick = () => {
   startSparkles();
 };
 
-
-
-/* ---------------- HEART CONFETTI ---------------- */
-
+/* HEART CONFETTI */
 function startConfetti(){
   for(let i=0;i<80;i++){
     const heart=document.createElement("div");
     heart.innerHTML="💖";
-
     heart.style.position="fixed";
     heart.style.left=Math.random()*100+"vw";
     heart.style.top="-10px";
     heart.style.fontSize="20px";
     heart.style.animation="fall 3s linear forwards";
-
     document.body.appendChild(heart);
   }
 }
 
-
-
-/* ---------------- SPARKLES ---------------- */
-
+/* SPARKLES */
 function startSparkles(){
-  setInterval(() => {
+  setInterval(()=>{
     const sparkle=document.createElement("div");
     sparkle.innerHTML="✨";
-
     sparkle.style.position="fixed";
     sparkle.style.left=Math.random()*100+"vw";
     sparkle.style.top="-20px";
     sparkle.style.fontSize=(Math.random()*20+10)+"px";
     sparkle.style.opacity=Math.random();
-    sparkle.style.pointerEvents="none";
     sparkle.style.animation="sparkleFall 4s linear forwards";
-
     document.body.appendChild(sparkle);
-
     setTimeout(()=>sparkle.remove(),4000);
-
   },120);
 }
 
-
-
-/* ---------------- ANIMATIONS ---------------- */
-
+/* ANIMATIONS */
 const style=document.createElement('style');
 style.innerHTML=`
 @keyframes fall{
-  to{
-    transform:translateY(100vh);
-    opacity:0;
-  }
+  to{ transform:translateY(100vh); opacity:0; }
 }
 @keyframes sparkleFall{
-  to{
-    transform:translateY(110vh) rotate(360deg);
-    opacity:0;
-  }
+  to{ transform:translateY(110vh) rotate(360deg); opacity:0; }
 }`;
 document.head.appendChild(style);
-
 </script>
 
 </body>
