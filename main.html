@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Forever Siri ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ====== HARD RESET STYLES ====== */
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Arial;
+
+  /* ❌ NO PINK — CLEAR BLUE */
+  background: radial-gradient(circle at top, #e3f2ff, #cfe8ff);
+
+  overflow:hidden;
+}
+
+/* ====== START CARD ====== */
+.startBox{
+  background:white;
+  padding:45px 65px;
+  border-radius:25px;
+  text-align:center;
+  box-shadow:0 30px 60px rgba(0,0,0,0.25);
+  position:relative;
+}
+
+.startBox h1{
+  font-size:30px;
+  margin-bottom:25px;
+}
+
+.btnYes{
+  background:#ff1744;
+  color:white;
+  padding:15px 34px;
+  font-size:18px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  transition:0.25s;
+}
+
+.btnNo{
+  background:#eee;
+  padding:15px 34px;
+  font-size:18px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  position:absolute;
+}
+
+/* ====== FINAL SCREEN ====== */
+.finalWrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.photoRing{
+  width:240px;
+  height:240px;
+  border-radius:50%;
+  border:7px solid #ff1744;
+  box-shadow:0 20px 45px rgba(0,0,0,0.35);
+  margin-bottom:30px;
+}
+
+/* ====== LETTER ====== */
+.letterCard{
+  background:white;
+  padding:60px;
+  border-radius:28px;
+  max-width:620px;
+
+  font-family:'Dancing Script', cursive;
+  font-size:42px;
+  line-height:2.2;
+  letter-spacing:1px;
+
+  /* 🔵 STRONG DARK BLUE */
+  color:#0a1f44;
+
+  box-shadow:0 30px 70px rgba(0,0,0,0.3);
+}
+
+/* ====== HEART ANIMATION ====== */
+.loveHeart{
+  position:fixed;
+  font-size:32px;
+  animation: floatLove 6s linear forwards;
+  filter: drop-shadow(0 0 8px #ff1744);
+}
+
+@keyframes floatLove{
+  from{ transform:translateY(110vh) scale(1); opacity:1; }
+  to{ transform:translateY(-10vh) scale(1.3); opacity:0; }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="startBox" id="start">
+  <h1>
+    Siri 😜<br><br>
+    Still stuck with me after all these years…<br>
+    Continue subscription for lifetime? ❤️
+  </h1>
+
+  <button class="btnYes" id="yesBtn">Renew ❤️</button>
+  <button class="btnNo" id="noBtn">Cancel ❌</button>
+</div>
+
+<script>
+
+const yesBtn = document.getElementById("yesBtn");
+const noBtn  = document.getElementById("noBtn");
+
+let grow = 1;
+
+/* ====== NO BUTTON FUN ====== */
+function escapeNo(){
+  noBtn.style.left = Math.random()*75 + "%";
+  noBtn.style.top  = Math.random()*75 + "%";
+
+  grow += 0.12;
+  yesBtn.style.transform = `scale(${grow})`;
+}
+
+noBtn.onmouseover = escapeNo;
+noBtn.onclick     = escapeNo;
+
+/* ====== YES CLICK ====== */
+yesBtn.onclick = () => {
+
+  const music = new Audio("kesariya.mp3");
+  music.loop = true;
+  music.volume = 0.7;
+  music.play();
+
+  document.body.innerHTML = `
+    <div class="finalWrap">
+      <img src="siri.jpg" class="photoRing">
+      <div class="letterCard" id="letter"></div>
+    </div>
+  `;
+
+  startHearts();
+  writeLetter();
+};
+
+/* ====== HEARTS ====== */
+function startHearts(){
+  setInterval(()=>{
+    const h = document.createElement("div");
+    h.className = "loveHeart";
+    h.innerHTML = "❤️";
+    h.style.left = Math.random()*100 + "vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  },250);
+}
+
+/* ====== TYPING LETTER ====== */
+function writeLetter(){
+
+  const lines = [
+    "Dear Siri,",
+    "",
+    "Subscription renewed successfully 😂",
+    "No cancellation allowed forever 😜",
+    "",
+    "Jokes apart…",
+    "Happy anniversary my love Siri ❤️",
+    "",
+    "Love you always ❤️",
+    "– Vasu"
+  ];
+
+  const box = document.getElementById("letter");
+  let line = 0;
+
+  function nextLine(){
+    if(line >= lines.length) return;
+
+    const div = document.createElement("div");
+    box.appendChild(div);
+
+    let i = 0;
+    const txt = lines[line];
+
+    function type(){
+      if(i < txt.length){
+        div.innerHTML += txt[i++];
+        setTimeout(type, 35);
+      } else {
+        line++;
+        setTimeout(nextLine, 350);
+      }
+    }
+
+    type();
+  }
+
+  nextLine();
+}
+
+</script>
+
+</body>
+</html>
