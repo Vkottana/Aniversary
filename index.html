@@ -18,13 +18,13 @@ body{
   justify-content:center;
   align-items:center;
 
-  /* 💙 new bright gradient */
+  /* bright clean background */
   background: linear-gradient(135deg,#e3f2fd,#ffffff);
 
   overflow:hidden;
 }
 
-/* ---------------- FIRST CARD ---------------- */
+/* ---------------- FIRST SCREEN ---------------- */
 
 .card{
   background:white;
@@ -52,7 +52,6 @@ button{
 
 #no{
   background:#eee;
-  color:#444;
   position:absolute;
 }
 
@@ -65,7 +64,6 @@ button{
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  position:relative;
 }
 
 /* photo */
@@ -74,23 +72,21 @@ button{
   height:220px;
   border-radius:50%;
   object-fit:cover;
-  border:6px solid #ff4d6d;
+  border:6px solid #ff1744;
   margin-bottom:25px;
   box-shadow:0 10px 25px rgba(0,0,0,0.25);
 }
 
-/* ---------------- LOVE LETTER ---------------- */
+/* ---------------- LETTER ---------------- */
 
 .letter{
   font-family:'Dancing Script', cursive;
-
   font-size:36px;
 
-  background:white;
-
-  /* 💙 bright blue ink */
+  /* darker blue text */
   color:#0d47a1;
 
+  background:white;
   padding:45px;
   border-radius:20px;
 
@@ -104,21 +100,24 @@ button{
   z-index:2;
 }
 
-/* ---------------- FLOATING HEARTS ---------------- */
+/* ---------------- DARK RED HEARTS ---------------- */
 
 .heart{
   position:fixed;
-  font-size:18px;
-  opacity:0.45;
-  pointer-events:none;
+
+  font-size:26px;              /* bigger */
+  opacity:0.95;               /* very clear */
+
+  filter: drop-shadow(0 0 6px #ff1744); /* glow */
+
   animation: floatUp 6s linear forwards;
+  pointer-events:none;
   z-index:1;
 }
 
 @keyframes floatUp{
   from{
     transform:translateY(100vh);
-    opacity:0.5;
   }
   to{
     transform:translateY(-10vh);
@@ -131,7 +130,6 @@ button{
 
 <body>
 
-<!-- FIRST SCREEN -->
 <div class="card">
   <h1>
     Siri 😜<br><br>
@@ -148,16 +146,16 @@ button{
 const noBtn=document.getElementById("no");
 const yesBtn=document.getElementById("yes");
 
-/* ---------------- NO BUTTON FUN ---------------- */
+/* ---------------- FUNNY NO BUTTON ---------------- */
 
 const messages=[
-  "Press YES madam 😆",
+  "Nice try 😜",
   "Not allowed 😂",
   "Forever only ❤️",
-  "Nice try 😜"
+  "Press YES madam 😆"
 ];
 
-let i=0,scale=1;
+let i=0, scale=1;
 
 function moveNo(){
   noBtn.innerText=messages[i];
@@ -195,22 +193,27 @@ yesBtn.onclick=()=>{
 };
 
 
-/* ---------------- FLOAT HEARTS ---------------- */
+/* ---------------- DARK RED FLOATING HEARTS ---------------- */
 
 function startHearts(){
   setInterval(()=>{
     const h=document.createElement("div");
     h.className="heart";
-    h.innerHTML="💗";
+
+    /* darker red hearts */
+    h.innerHTML="❤️";
+
     h.style.left=Math.random()*100+"vw";
-    h.style.fontSize=(Math.random()*12+14)+"px";
+    h.style.fontSize=(Math.random()*10+20)+"px";
+
     document.body.appendChild(h);
+
     setTimeout(()=>h.remove(),6000);
-  },400);
+  },300);
 }
 
 
-/* ---------------- TYPE LETTER ---------------- */
+/* ---------------- TYPING LETTER ---------------- */
 
 function typeLetter(){
 
@@ -228,6 +231,7 @@ function typeLetter(){
   ];
 
   const letter=document.getElementById("letter");
+
   let lineIndex=0;
 
   function typeLine(){
@@ -244,7 +248,7 @@ function typeLetter(){
       if(w<words.length){
         div.innerHTML+=words[w]+" ";
         w++;
-        setTimeout(typeWord,120);
+        setTimeout(typeWord,110);
       }else{
         lineIndex++;
         setTimeout(typeLine,350);
