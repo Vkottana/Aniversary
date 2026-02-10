@@ -4,10 +4,11 @@
 <meta charset="UTF-8" />
 <title>Happy Anniversary Siri ❤️</title>
 
-<!-- handwriting font -->
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 
 <style>
+
+/* ---------------- BODY ---------------- */
 
 body{
   margin:0;
@@ -16,7 +17,10 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  background: linear-gradient(135deg,#ffd6e0,#ffeef6);
+
+  /* 💙 new bright gradient */
+  background: linear-gradient(135deg,#e3f2fd,#ffffff);
+
   overflow:hidden;
 }
 
@@ -27,7 +31,7 @@ body{
   padding:40px 60px;
   border-radius:20px;
   text-align:center;
-  box-shadow:0 10px 30px rgba(0,0,0,0.12);
+  box-shadow:0 12px 35px rgba(0,0,0,0.15);
   position:relative;
 }
 
@@ -61,7 +65,6 @@ button{
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  text-align:center;
   position:relative;
 }
 
@@ -76,30 +79,33 @@ button{
   box-shadow:0 10px 25px rgba(0,0,0,0.25);
 }
 
-/* letter */
+/* ---------------- LOVE LETTER ---------------- */
+
 .letter{
   font-family:'Dancing Script', cursive;
-  font-size:34px;
 
-  background:#fffdf8;
+  font-size:36px;
 
-  color:#3e2723;   /* darker ink */
+  background:white;
 
-  padding:40px;
-  border-radius:18px;
+  /* 💙 bright blue ink */
+  color:#0d47a1;
 
-  box-shadow:0 12px 30px rgba(0,0,0,0.15);
+  padding:45px;
+  border-radius:20px;
 
-  max-width:520px;
-  line-height:2;
+  box-shadow:0 14px 35px rgba(0,0,0,0.18);
+
+  max-width:550px;
+  line-height:2.1;
   letter-spacing:1px;
 
   text-align:left;
-
   z-index:2;
 }
 
-/* floating hearts */
+/* ---------------- FLOATING HEARTS ---------------- */
+
 .heart{
   position:fixed;
   font-size:18px;
@@ -137,27 +143,25 @@ button{
   <button id="no">Cancel ❌</button>
 </div>
 
-
 <script>
 
-const noBtn = document.getElementById("no");
-const yesBtn = document.getElementById("yes");
+const noBtn=document.getElementById("no");
+const yesBtn=document.getElementById("yes");
 
-/* ---------------- FUNNY NO BUTTON ---------------- */
+/* ---------------- NO BUTTON FUN ---------------- */
 
-const messages = [
-  "Nice try 😜",
+const messages=[
+  "Press YES madam 😆",
   "Not allowed 😂",
   "Forever only ❤️",
-  "Press YES madam 😆"
+  "Nice try 😜"
 ];
 
-let index=0;
-let scale=1;
+let i=0,scale=1;
 
 function moveNo(){
-  noBtn.innerText = messages[index];
-  index=(index+1)%messages.length;
+  noBtn.innerText=messages[i];
+  i=(i+1)%messages.length;
 
   noBtn.style.left=Math.random()*80+"%";
   noBtn.style.top=Math.random()*80+"%";
@@ -172,15 +176,14 @@ noBtn.onclick=moveNo;
 
 /* ---------------- YES CLICK ---------------- */
 
-yesBtn.onclick = () => {
+yesBtn.onclick=()=>{
 
-  /* play song */
-  const audio = new Audio("kesariya.mp3");
-  audio.loop = true;
-  audio.volume = 0.7;
+  const audio=new Audio("kesariya.mp3");
+  audio.loop=true;
+  audio.volume=0.7;
   audio.play();
 
-  document.body.innerHTML = `
+  document.body.innerHTML=`
     <div class="final">
       <img src="siri.jpg" class="photo">
       <div class="letter" id="letter"></div>
@@ -192,29 +195,26 @@ yesBtn.onclick = () => {
 };
 
 
-/* ---------------- FLOATING HEARTS ---------------- */
+/* ---------------- FLOAT HEARTS ---------------- */
 
 function startHearts(){
   setInterval(()=>{
     const h=document.createElement("div");
     h.className="heart";
     h.innerHTML="💗";
-
     h.style.left=Math.random()*100+"vw";
     h.style.fontSize=(Math.random()*12+14)+"px";
-
     document.body.appendChild(h);
-
     setTimeout(()=>h.remove(),6000);
   },400);
 }
 
 
-/* ---------------- TYPEWRITER LETTER (emoji safe) ---------------- */
+/* ---------------- TYPE LETTER ---------------- */
 
 function typeLetter(){
 
-  const lines = [
+  const lines=[
     "Dear Siri,",
     "",
     "Subscription renewed successfully 😂",
@@ -228,7 +228,6 @@ function typeLetter(){
   ];
 
   const letter=document.getElementById("letter");
-
   let lineIndex=0;
 
   function typeLine(){
@@ -236,15 +235,15 @@ function typeLetter(){
     if(lineIndex>=lines.length) return;
 
     const words=lines[lineIndex].split(" ");
-    let wordIndex=0;
+    let w=0;
 
     const div=document.createElement("div");
     letter.appendChild(div);
 
     function typeWord(){
-      if(wordIndex<words.length){
-        div.innerHTML+=words[wordIndex]+" ";
-        wordIndex++;
+      if(w<words.length){
+        div.innerHTML+=words[w]+" ";
+        w++;
         setTimeout(typeWord,120);
       }else{
         lineIndex++;
