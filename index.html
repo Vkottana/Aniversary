@@ -13,6 +13,7 @@ body{
   justify-content:center;
   align-items:center;
   background: linear-gradient(135deg,#ffd6e0,#ffeef6);
+  overflow:hidden;
 }
 
 /* CARD */
@@ -23,16 +24,17 @@ body{
   text-align:center;
   box-shadow:0 10px 30px rgba(0,0,0,0.12);
   position:relative;
+  z-index:10;
 }
 
-/* BUTTON WRAPPER (IMPORTANT) */
+/* BUTTON AREA */
 .buttons{
   margin-top:25px;
   position:relative;
-  height:70px;
+  height:80px;
 }
 
-/* COMMON BUTTON */
+/* BUTTONS */
 button{
   padding:12px 28px;
   font-size:18px;
@@ -41,35 +43,56 @@ button{
   cursor:pointer;
 }
 
-/* YES */
 #yes{
   background:#ff4d6d;
   color:white;
-  transition: transform 0.2s ease;
+  transition:transform 0.2s ease;
 }
 
-/* NO (initially normal) */
 #no{
   background:#eee;
   color:#333;
-  margin-left:12px;
-  transition: all 0.2s ease;
+  margin-left:10px;
+  transition:all 0.2s ease;
 }
 
-/* SHAKE */
-@keyframes shake{
-  0%{transform:translateX(0)}
-  25%{transform:translateX(-4px)}
-  50%{transform:translateX(4px)}
-  75%{transform:translateX(-4px)}
-  100%{transform:translateX(0)}
+/* floating hearts background */
+.floating-heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:20px;
+  animation: floatUp linear forwards;
+  pointer-events:none;
+  opacity:0.8;
+}
+
+@keyframes floatUp{
+  to{
+    transform:translateY(-110vh);
+    opacity:0;
+  }
+}
+
+/* fireworks */
+.fire{
+  position:fixed;
+  font-size:24px;
+  animation: boom 1.2s ease-out forwards;
+  pointer-events:none;
+}
+
+@keyframes boom{
+  to{
+    transform:translate(var(--x), var(--y));
+    opacity:0;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="card" id="mainCard">
+<div class="card" id="card">
 
   <h1>
     Siri 😜<br><br>
@@ -77,91 +100,144 @@ button{
     Continue subscription for lifetime? ❤️
   </h1>
 
-  <div class="buttons" id="btnWrap">
+  <div class="buttons" id="wrap">
     <button id="yes">Renew ❤️</button>
     <button id="no">Cancel ❌</button>
   </div>
 
 </div>
 
-<audio id="popSound">
-  <source src="https://www.soundjay.com/buttons/sounds/button-16.mp3">
-</audio>
-
 <script>
-const noBtn = document.getElementById("no");
 const yesBtn = document.getElementById("yes");
-const wrap = document.getElementById("btnWrap");
-const pop = document.getElementById("popSound");
+const noBtn  = document.getElementById("no");
+const wrap   = document.getElementById("wrap");
+
+let scale = 1;
+let i = 0;
 
 const messages = [
   "Nice try 😜",
   "Cancellation not allowed 🚫",
   "Lifetime only ❤️",
-  "System error 😂",
-  "Auto renew enabled 😎",
   "Still stuck with me forever 😘",
   "Press YES my love ❤️"
 ];
 
-let i = 0;
-let scale = 1;
 
-function escapeButton(){
 
-  pop.currentTime=0;
-  pop.play();
+/* =========================
+   NO BUTTON ESCAPE + HEART BURST
+========================= */
 
-  // change text
+function heartBurst(x,y){
+  for(let j=0;j<8;j++){
+    const h=document.createElement("div");
+    h.innerHTML="💖";
+    h.style.position="fixed";
+    h.style.left=x+"px";
+    h.style.top=y+"px";
+    h.style.fontSize="18px";
+    h.style.transition="1s";
+    document.body.appendChild(h);
+
+    setTimeout(()=>{
+      h.style.transform=`translate(${(Math.random()-0.5)*150}px, ${(Math.random()-0.5)*150}px)`;
+      h.style.opacity=0;
+    },10);
+
+    setTimeout(()=>h.remove(),1000);
+  }
+}
+
+function escapeButton(e){
+
   noBtn.innerText = messages[i];
-  i = (i+1)%messages.length;
+  i=(i+1)%messages.length;
 
-  // make absolute ONLY after first move
   noBtn.style.position="absolute";
 
   const maxX = wrap.clientWidth - noBtn.offsetWidth;
   const maxY = wrap.clientHeight - noBtn.offsetHeight;
 
-  noBtn.style.left = Math.random()*maxX+"px";
-  noBtn.style.top  = Math.random()*maxY+"px";
+  noBtn.style.left = Math.random()*maxX + "px";
+  noBtn.style.top  = Math.random()*maxY + "px";
 
-  // shake
-  noBtn.style.animation="shake 0.3s";
-  setTimeout(()=>noBtn.style.animation="",300);
-
-  // YES grows
-  scale += 0.1;
+  /* YES grows */
+  scale += 0.08;
   yesBtn.style.transform=`scale(${scale})`;
+
+  heartBurst(e.clientX, e.clientY);
 }
 
 noBtn.addEventListener("mouseover", escapeButton);
 noBtn.addEventListener("click", escapeButton);
 
 
-/* YES CLICK */
+
+/* =========================
+   FLOATING HEARTS BACKGROUND
+========================= */
+
+setInterval(()=>{
+  const heart=document.createElement("div");
+  heart.className="floating-heart";
+  heart.innerHTML="💗";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.animationDuration=(Math.random()*4+5)+"s";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),9000);
+},400);
+
+
+
+/* =========================
+   YES CLICK → FIREWORKS + LOVE PAGE
+========================= */
+
+function fireworks(){
+  for(let i=0;i<40;i++){
+    const f=document.createElement("div");
+    f.className="fire";
+    f.innerHTML="✨";
+    f.style.left="50%";
+    f.style.top="50%";
+    f.style.setProperty("--x",(Math.random()-0.5)*500+"px");
+    f.style.setProperty("--y",(Math.random()-0.5)*500+"px");
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1200);
+  }
+}
+
 yesBtn.onclick=()=>{
-  document.body.innerHTML=`
-  <div style="
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    background:linear-gradient(135deg,#ffd6e0,#ffeef6);
-  ">
-    <img src="siri.jpg" style="
-      width:230px;
-      height:230px;
-      border-radius:50%;
-      object-fit:cover;
-      border:6px solid #ff4d6d;
-      margin-bottom:20px;
-    ">
-    <h1>💖 Subscription Renewed! 💖</h1>
-    <h2>Happy Anniversary my love Siri ❤️</h2>
-  </div>
-  `;
+
+  fireworks();
+
+  setTimeout(()=>{
+    document.body.innerHTML=`
+      <div style="
+        height:100vh;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        text-align:center;
+        background:linear-gradient(135deg,#ffd6e0,#ffeef6);
+      ">
+        <img src="siri.jpg"
+          style="
+          width:240px;
+          height:240px;
+          border-radius:50%;
+          object-fit:cover;
+          border:6px solid #ff4d6d;
+          margin-bottom:20px;
+        ">
+        <h1>💖 Subscription Renewed! 💖</h1>
+        <h2>Happy Anniversary my love Siri ❤️</h2>
+        <h3>Forever yours 💕</h3>
+      </div>
+    `;
+  },500);
 };
 </script>
 
