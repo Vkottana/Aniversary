@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <title>Happy Anniversary Siri ❤️</title>
 
-<!-- Handwriting font -->
+<!-- handwriting font -->
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 
 <style>
@@ -20,7 +20,7 @@ body{
   overflow:hidden;
 }
 
-/* first card */
+/* first screen */
 .card{
   background:white;
   padding:40px 60px;
@@ -51,15 +51,17 @@ button{
   position:absolute;
 }
 
-/* final screen layout */
+/* final screen */
 .final{
   height:100vh;
+  width:100%;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
   padding:20px;
+  position:relative;
 }
 
 /* photo */
@@ -73,18 +75,51 @@ button{
   box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
-/* letter */
+/* LOVE LETTER */
 .letter{
   font-family:'Dancing Script', cursive;
-  font-size:30px;
+  font-size:32px;
+
   background:#fffdf8;
-  padding:35px;
+
+  color:#6d4c41;   /* soft ink color */
+
+  padding:40px;
   border-radius:18px;
-  box-shadow:0 12px 30px rgba(0,0,0,0.18);
-  max-width:480px;
-  line-height:1.8;
+
+  box-shadow:0 12px 30px rgba(0,0,0,0.12);
+
+  max-width:520px;
+  line-height:1.9;
+  letter-spacing:1px;
+
   text-align:left;
-  min-height:280px;
+
+  transform:rotate(-1deg);
+
+  position:relative;
+  z-index:2;
+}
+
+/* floating hearts */
+.heart{
+  position:fixed;
+  font-size:18px;
+  opacity:0.4;
+  pointer-events:none;
+  animation: floatUp 6s linear forwards;
+  z-index:1;
+}
+
+@keyframes floatUp{
+  from{
+    transform:translateY(100vh);
+    opacity:0.5;
+  }
+  to{
+    transform:translateY(-10vh);
+    opacity:0;
+  }
 }
 
 </style>
@@ -103,6 +138,7 @@ button{
   <button id="yes">Renew ❤️</button>
   <button id="no">Cancel ❌</button>
 </div>
+
 
 <script>
 
@@ -143,9 +179,10 @@ yesBtn.onclick = () => {
   /* play music */
   const audio = new Audio("kesariya.mp3");
   audio.loop = true;
+  audio.volume = 0.7;
   audio.play();
 
-  /* build new screen */
+  /* build final screen */
   document.body.innerHTML = `
     <div class="final">
       <img src="siri.jpg" class="photo">
@@ -153,11 +190,30 @@ yesBtn.onclick = () => {
     </div>
   `;
 
+  startHearts();
   typeLetter();
 };
 
 
-/* ---------------- TYPEWRITER EFFECT ---------------- */
+/* ---------------- FLOATING HEARTS ---------------- */
+
+function startHearts(){
+  setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="💗";
+
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=(Math.random()*12+14)+"px";
+
+    document.body.appendChild(h);
+
+    setTimeout(()=>h.remove(),6000);
+  },400);
+}
+
+
+/* ---------------- TYPEWRITER LETTER ---------------- */
 
 function typeLetter(){
 
@@ -174,25 +230,25 @@ function typeLetter(){
     "– Vasu"
   ];
 
-  const letter = document.getElementById("letter");
+  const letter=document.getElementById("letter");
 
-  let lineIndex=0;
-  let charIndex=0;
+  let line=0;
+  let char=0;
 
   function type(){
 
-    if(lineIndex >= lines.length) return;
+    if(line>=lines.length) return;
 
-    if(charIndex < lines[lineIndex].length){
-      letter.innerHTML += lines[lineIndex][charIndex];
-      charIndex++;
-      setTimeout(type, 35);
+    if(char < lines[line].length){
+      letter.innerHTML += lines[line][char];
+      char++;
+      setTimeout(type,28);
     }
     else{
       letter.innerHTML += "<br>";
-      lineIndex++;
-      charIndex=0;
-      setTimeout(type, 300);
+      line++;
+      char=0;
+      setTimeout(type,300);
     }
   }
 
