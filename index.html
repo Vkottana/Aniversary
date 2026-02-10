@@ -13,7 +13,6 @@ body{
   justify-content:center;
   align-items:center;
   background: linear-gradient(135deg,#ffd6e0,#ffeef6);
-  overflow:hidden;
 }
 
 /* CARD */
@@ -24,10 +23,16 @@ body{
   text-align:center;
   box-shadow:0 10px 30px rgba(0,0,0,0.12);
   position:relative;
-  min-width:350px;
 }
 
-/* BUTTON */
+/* BUTTON WRAPPER (IMPORTANT) */
+.buttons{
+  margin-top:25px;
+  position:relative;
+  height:70px;
+}
+
+/* COMMON BUTTON */
 button{
   padding:12px 28px;
   font-size:18px;
@@ -40,28 +45,23 @@ button{
 #yes{
   background:#ff4d6d;
   color:white;
-  margin-top:20px;
   transition: transform 0.2s ease;
 }
 
-/* NO */
+/* NO (initially normal) */
 #no{
-  background:#f2f2f2;
+  background:#eee;
   color:#333;
-  position:absolute;
-  top:75%;               /* ✅ initial position FIX */
-  left:40%;
-  z-index:10;            /* ✅ always visible */
-  font-weight:600;
+  margin-left:12px;
   transition: all 0.2s ease;
 }
 
-/* shake */
+/* SHAKE */
 @keyframes shake{
   0%{transform:translateX(0)}
-  25%{transform:translateX(-5px)}
-  50%{transform:translateX(5px)}
-  75%{transform:translateX(-5px)}
+  25%{transform:translateX(-4px)}
+  50%{transform:translateX(4px)}
+  75%{transform:translateX(-4px)}
   100%{transform:translateX(0)}
 }
 </style>
@@ -77,22 +77,21 @@ button{
     Continue subscription for lifetime? ❤️
   </h1>
 
-  <button id="yes">Renew ❤️</button>
-  <button id="no">Cancel ❌</button>
+  <div class="buttons" id="btnWrap">
+    <button id="yes">Renew ❤️</button>
+    <button id="no">Cancel ❌</button>
+  </div>
 
 </div>
 
-
-<!-- POP SOUND -->
 <audio id="popSound">
   <source src="https://www.soundjay.com/buttons/sounds/button-16.mp3">
 </audio>
 
-
 <script>
 const noBtn = document.getElementById("no");
 const yesBtn = document.getElementById("yes");
-const card = document.getElementById("mainCard");
+const wrap = document.getElementById("btnWrap");
 const pop = document.getElementById("popSound");
 
 const messages = [
@@ -100,53 +99,48 @@ const messages = [
   "Cancellation not allowed 🚫",
   "Lifetime only ❤️",
   "System error 😂",
-  "Pandit ji approved 🙏",
   "Auto renew enabled 😎",
   "Still stuck with me forever 😘",
   "Press YES my love ❤️"
 ];
 
 let i = 0;
-let yesScale = 1;
+let scale = 1;
 
-
-/* ESCAPE BUTTON */
 function escapeButton(){
 
-  pop.currentTime = 0;
+  pop.currentTime=0;
   pop.play();
 
+  // change text
   noBtn.innerText = messages[i];
-  i = (i + 1) % messages.length;
+  i = (i+1)%messages.length;
 
-  const maxX = card.clientWidth - noBtn.offsetWidth;
-  const maxY = card.clientHeight - noBtn.offsetHeight;
+  // make absolute ONLY after first move
+  noBtn.style.position="absolute";
 
-  noBtn.style.left = Math.random() * maxX + "px";
-  noBtn.style.top  = Math.random() * maxY + "px";
+  const maxX = wrap.clientWidth - noBtn.offsetWidth;
+  const maxY = wrap.clientHeight - noBtn.offsetHeight;
 
-  /* shake */
+  noBtn.style.left = Math.random()*maxX+"px";
+  noBtn.style.top  = Math.random()*maxY+"px";
+
+  // shake
   noBtn.style.animation="shake 0.3s";
-  setTimeout(()=> noBtn.style.animation="",300);
+  setTimeout(()=>noBtn.style.animation="",300);
 
-  /* YES grows */
-  yesScale += 0.1;
-  yesBtn.style.transform = `scale(${yesScale})`;
+  // YES grows
+  scale += 0.1;
+  yesBtn.style.transform=`scale(${scale})`;
 }
 
 noBtn.addEventListener("mouseover", escapeButton);
 noBtn.addEventListener("click", escapeButton);
 
 
-
 /* YES CLICK */
-yesBtn.onclick = () => {
-
-  const music = new Audio("love.mp3");
-  music.loop = true;
-  music.play();
-
-  document.body.innerHTML = `
+yesBtn.onclick=()=>{
+  document.body.innerHTML=`
   <div style="
     height:100vh;
     display:flex;
@@ -156,19 +150,16 @@ yesBtn.onclick = () => {
     text-align:center;
     background:linear-gradient(135deg,#ffd6e0,#ffeef6);
   ">
-      <img src="siri.jpg"
-        style="
-        width:240px;
-        height:240px;
-        border-radius:50%;
-        object-fit:cover;
-        border:6px solid #ff4d6d;
-        margin-bottom:20px;
-      ">
-
-      <h1>💖 Subscription Renewed! 💖</h1>
-      <h2>Hehehe you had no choice 😜</h2>
-      <h2>Happy Anniversary my love Siri ❤️</h2>
+    <img src="siri.jpg" style="
+      width:230px;
+      height:230px;
+      border-radius:50%;
+      object-fit:cover;
+      border:6px solid #ff4d6d;
+      margin-bottom:20px;
+    ">
+    <h1>💖 Subscription Renewed! 💖</h1>
+    <h2>Happy Anniversary my love Siri ❤️</h2>
   </div>
   `;
 };
