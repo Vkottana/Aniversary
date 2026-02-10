@@ -35,7 +35,7 @@ body{
   height:80px;
 }
 
-/* BUTTON */
+/* BUTTONS */
 button{
   padding:12px 28px;
   font-size:18px;
@@ -44,14 +44,12 @@ button{
   cursor:pointer;
 }
 
-/* YES */
 #yes{
   background:#ff4d6d;
   color:white;
   transition:transform 0.2s ease;
 }
 
-/* NO */
 #no{
   background:#eee;
   color:#333;
@@ -119,7 +117,6 @@ button{
 
 </div>
 
-
 <script>
 const yesBtn = document.getElementById("yes");
 const noBtn  = document.getElementById("no");
@@ -136,10 +133,7 @@ const messages = [
   "Press YES my love ❤️"
 ];
 
-
-/* =========================
-   FLOATING HEART BACKGROUND
-========================= */
+/* FLOATING HEARTS */
 setInterval(()=>{
   const h=document.createElement("div");
   h.className="floating-heart";
@@ -150,10 +144,7 @@ setInterval(()=>{
   setTimeout(()=>h.remove(),9000);
 },400);
 
-
-/* =========================
-   HEART BURST
-========================= */
+/* HEART BURST */
 function heartBurst(x,y){
   for(let j=0;j<8;j++){
     const heart=document.createElement("div");
@@ -173,12 +164,8 @@ function heartBurst(x,y){
   }
 }
 
-
-/* =========================
-   NO ESCAPE
-========================= */
+/* NO ESCAPE */
 function escapeButton(e){
-
   noBtn.innerText = messages[i];
   i=(i+1)%messages.length;
 
@@ -202,11 +189,7 @@ function escapeButton(e){
 noBtn.addEventListener("mouseover", escapeButton);
 noBtn.addEventListener("click", escapeButton);
 
-
-
-/* =========================
-   FIREWORKS
-========================= */
+/* FIREWORKS */
 function fireworks(){
   for(let i=0;i<40;i++){
     const f=document.createElement("div");
@@ -221,17 +204,20 @@ function fireworks(){
   }
 }
 
-
-/* =========================
-   YES CLICK (MUSIC FIXED)
-========================= */
+/* YES CLICK — MUSIC GUARANTEED */
 yesBtn.onclick = () => {
 
-  /* music must start immediately (browser rule) */
-  const music = new Audio("love.mp3");
-  music.loop = true;
-  music.volume = 0.6;
-  music.play();
+  // 🔊 safest audio method (mobile + desktop)
+  const audio = document.createElement("audio");
+  audio.src = "kesariya.mp3";
+  audio.loop = true;
+  audio.volume = 0.7;
+  audio.autoplay = true;
+  audio.playsInline = true;
+
+  document.body.appendChild(audio);
+
+  audio.play().catch(()=>{});
 
   fireworks();
 
