@@ -20,7 +20,8 @@ body{
   overflow:hidden;
 }
 
-/* first screen */
+/* ---------------- FIRST CARD ---------------- */
+
 .card{
   background:white;
   padding:40px 60px;
@@ -42,7 +43,7 @@ button{
 #yes{
   background:#ff4d6d;
   color:white;
-  transition:0.2s;
+  transition:0.25s;
 }
 
 #no{
@@ -51,7 +52,8 @@ button{
   position:absolute;
 }
 
-/* final screen */
+/* ---------------- FINAL SCREEN ---------------- */
+
 .final{
   height:100vh;
   width:100%;
@@ -60,7 +62,6 @@ button{
   justify-content:center;
   align-items:center;
   text-align:center;
-  padding:20px;
   position:relative;
 }
 
@@ -72,32 +73,29 @@ button{
   object-fit:cover;
   border:6px solid #ff4d6d;
   margin-bottom:25px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+  box-shadow:0 10px 25px rgba(0,0,0,0.25);
 }
 
-/* LOVE LETTER */
+/* letter */
 .letter{
   font-family:'Dancing Script', cursive;
-  font-size:32px;
+  font-size:34px;
 
   background:#fffdf8;
 
-  color:#6d4c41;   /* soft ink color */
+  color:#3e2723;   /* darker ink */
 
   padding:40px;
   border-radius:18px;
 
-  box-shadow:0 12px 30px rgba(0,0,0,0.12);
+  box-shadow:0 12px 30px rgba(0,0,0,0.15);
 
   max-width:520px;
-  line-height:1.9;
+  line-height:2;
   letter-spacing:1px;
 
   text-align:left;
 
-  transform:rotate(-1deg);
-
-  position:relative;
   z-index:2;
 }
 
@@ -105,7 +103,7 @@ button{
 .heart{
   position:fixed;
   font-size:18px;
-  opacity:0.4;
+  opacity:0.45;
   pointer-events:none;
   animation: floatUp 6s linear forwards;
   z-index:1;
@@ -176,13 +174,12 @@ noBtn.onclick=moveNo;
 
 yesBtn.onclick = () => {
 
-  /* play music */
+  /* play song */
   const audio = new Audio("kesariya.mp3");
   audio.loop = true;
   audio.volume = 0.7;
   audio.play();
 
-  /* build final screen */
   document.body.innerHTML = `
     <div class="final">
       <img src="siri.jpg" class="photo">
@@ -213,7 +210,7 @@ function startHearts(){
 }
 
 
-/* ---------------- TYPEWRITER LETTER ---------------- */
+/* ---------------- TYPEWRITER LETTER (emoji safe) ---------------- */
 
 function typeLetter(){
 
@@ -232,27 +229,33 @@ function typeLetter(){
 
   const letter=document.getElementById("letter");
 
-  let line=0;
-  let char=0;
+  let lineIndex=0;
 
-  function type(){
+  function typeLine(){
 
-    if(line>=lines.length) return;
+    if(lineIndex>=lines.length) return;
 
-    if(char < lines[line].length){
-      letter.innerHTML += lines[line][char];
-      char++;
-      setTimeout(type,28);
+    const words=lines[lineIndex].split(" ");
+    let wordIndex=0;
+
+    const div=document.createElement("div");
+    letter.appendChild(div);
+
+    function typeWord(){
+      if(wordIndex<words.length){
+        div.innerHTML+=words[wordIndex]+" ";
+        wordIndex++;
+        setTimeout(typeWord,120);
+      }else{
+        lineIndex++;
+        setTimeout(typeLine,350);
+      }
     }
-    else{
-      letter.innerHTML += "<br>";
-      line++;
-      char=0;
-      setTimeout(type,300);
-    }
+
+    typeWord();
   }
 
-  type();
+  typeLine();
 }
 
 </script>
