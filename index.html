@@ -18,20 +18,20 @@ body{
   justify-content:center;
   align-items:center;
 
-  /* bright clean background */
-  background: linear-gradient(135deg,#e3f2fd,#ffffff);
+  /* brighter background */
+  background: linear-gradient(135deg,#f5f9ff,#e6f0ff);
 
   overflow:hidden;
 }
 
-/* ---------------- FIRST SCREEN ---------------- */
+/* ---------------- FIRST CARD ---------------- */
 
 .card{
   background:white;
   padding:40px 60px;
   border-radius:20px;
   text-align:center;
-  box-shadow:0 12px 35px rgba(0,0,0,0.15);
+  box-shadow:0 14px 40px rgba(0,0,0,0.2);
   position:relative;
 }
 
@@ -45,9 +45,8 @@ button{
 }
 
 #yes{
-  background:#ff4d6d;
+  background:#ff1744;
   color:white;
-  transition:0.25s;
 }
 
 #no{
@@ -59,56 +58,59 @@ button{
 
 .final{
   height:100vh;
-  width:100%;
   display:flex;
   flex-direction:column;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
 }
 
 /* photo */
 .photo{
-  width:220px;
-  height:220px;
+  width:230px;
+  height:230px;
   border-radius:50%;
   object-fit:cover;
   border:6px solid #ff1744;
-  margin-bottom:25px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.25);
+  margin-bottom:30px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.35);
 }
 
-/* ---------------- LETTER ---------------- */
+/* ---------------- LETTER (FIXED) ---------------- */
 
 .letter{
+
   font-family:'Dancing Script', cursive;
-  font-size:36px;
 
-  /* darker blue text */
-  color:#0d47a1;
+  font-size:40px;
 
-  background:white;
-  padding:45px;
-  border-radius:20px;
+  /* PURE WHITE paper */
+  background:#ffffff;
 
-  box-shadow:0 14px 35px rgba(0,0,0,0.18);
+  /* DARK INK BLUE */
+  color:#0b2c6b;
 
-  max-width:550px;
-  line-height:2.1;
+  padding:55px;
+  border-radius:25px;
+
+  /* stronger shadow for depth */
+  box-shadow:0 20px 45px rgba(0,0,0,0.25);
+
+  max-width:600px;
+  line-height:2.2;
   letter-spacing:1px;
 
   text-align:left;
   z-index:2;
 }
 
-/* ---------------- DARK RED HEARTS ---------------- */
+/* ---------------- DARK HEARTS ---------------- */
 
 .heart{
   position:fixed;
+  font-size:28px;
+  opacity:1;
 
-  font-size:26px;              /* bigger */
-  opacity:0.95;               /* very clear */
-
-  filter: drop-shadow(0 0 6px #ff1744); /* glow */
+  filter: drop-shadow(0 0 6px #ff1744);
 
   animation: floatUp 6s linear forwards;
   pointer-events:none;
@@ -116,13 +118,8 @@ button{
 }
 
 @keyframes floatUp{
-  from{
-    transform:translateY(100vh);
-  }
-  to{
-    transform:translateY(-10vh);
-    opacity:0;
-  }
+  from{ transform:translateY(100vh); }
+  to{ transform:translateY(-10vh); opacity:0; }
 }
 
 </style>
@@ -146,24 +143,13 @@ button{
 const noBtn=document.getElementById("no");
 const yesBtn=document.getElementById("yes");
 
-/* ---------------- FUNNY NO BUTTON ---------------- */
+/* ---------------- NO FUN ---------------- */
 
-const messages=[
-  "Press YES madam 😆",
-  "Not allowed 😂",
-  "Forever only ❤️",
-  "Nice try 😜"
-];
-
-let i=0, scale=1;
+let scale=1;
 
 function moveNo(){
-  noBtn.innerText=messages[i];
-  i=(i+1)%messages.length;
-
   noBtn.style.left=Math.random()*80+"%";
   noBtn.style.top=Math.random()*80+"%";
-
   scale+=0.1;
   yesBtn.style.transform=`scale(${scale})`;
 }
@@ -193,27 +179,21 @@ yesBtn.onclick=()=>{
 };
 
 
-/* ---------------- DARK RED FLOATING HEARTS ---------------- */
+/* ---------------- FLOAT HEARTS ---------------- */
 
 function startHearts(){
   setInterval(()=>{
     const h=document.createElement("div");
     h.className="heart";
-
-    /* darker red hearts */
     h.innerHTML="❤️";
-
     h.style.left=Math.random()*100+"vw";
-    h.style.fontSize=(Math.random()*10+20)+"px";
-
     document.body.appendChild(h);
-
     setTimeout(()=>h.remove(),6000);
-  },300);
+  },350);
 }
 
 
-/* ---------------- TYPING LETTER ---------------- */
+/* ---------------- TYPE LETTER ---------------- */
 
 function typeLetter(){
 
@@ -232,37 +212,36 @@ function typeLetter(){
 
   const letter=document.getElementById("letter");
 
-  let lineIndex=0;
+  let line=0;
 
-  function typeLine(){
+  function nextLine(){
 
-    if(lineIndex>=lines.length) return;
-
-    const words=lines[lineIndex].split(" ");
-    let w=0;
+    if(line>=lines.length) return;
 
     const div=document.createElement("div");
     letter.appendChild(div);
 
-    function typeWord(){
-      if(w<words.length){
-        div.innerHTML+=words[w]+" ";
-        w++;
-        setTimeout(typeWord,110);
+    let text=lines[line];
+    let i=0;
+
+    function typeChar(){
+      if(i<text.length){
+        div.innerHTML+=text[i];
+        i++;
+        setTimeout(typeChar,45);
       }else{
-        lineIndex++;
-        setTimeout(typeLine,350);
+        line++;
+        setTimeout(nextLine,300);
       }
     }
 
-    typeWord();
+    typeChar();
   }
 
-  typeLine();
+  nextLine();
 }
 
 </script>
 
 </body>
 </html>
-
