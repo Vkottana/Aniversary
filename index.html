@@ -29,7 +29,7 @@ body::after {
   pointer-events: none;
 }
 
-/* ---------- FIRST SCREEN - PREMIUM SUBSCRIPTION BOX (NO YEAR) ---------- */
+/* ---------- FIRST SCREEN - PREMIUM SUBSCRIPTION BOX ---------- */
 #start{
   height:100vh;
   display:flex;
@@ -99,7 +99,7 @@ body::after {
 }
 
 .membership-badge {
-  background: #8b0000;
+  background: #4a2c2c;  /* Deep Burgundy - NO RED */
   color: #ffd700;
   display: inline-block;
   padding: 10px 30px;
@@ -109,7 +109,7 @@ body::after {
   letter-spacing: 4px;
   margin-bottom: 25px;
   border: 1px solid #ffd700;
-  box-shadow: 0 0 25px rgba(139,0,0,0.6);
+  box-shadow: 0 0 25px rgba(74,44,44,0.6);
   text-transform: uppercase;
 }
 
@@ -199,7 +199,7 @@ body::after {
 }
 
 .benefit-item {
-  background: rgba(139,0,0,0.3);
+  background: rgba(74,44,44,0.3);  /* Deep Burgundy - NO RED */
   color: #fff3e0;
   padding: 10px 20px;
   border-radius: 40px;
@@ -231,42 +231,104 @@ body::after {
   margin-top: 20px;
 }
 
-#yes{
-  padding:18px 45px;
-  font-size:22px;
-  font-weight:600;
-  border:none;
-  border-radius:50px;
-  cursor:pointer;
-  background: #8b0000;
+/* ---------- IRRESISTIBLE YES, FOREVER BUTTON ---------- */
+#yes {
+  padding: 20px 50px;
+  font-size: 24px;
+  font-weight: 700;
+  border: none;
+  border-radius: 60px;
+  cursor: pointer;
+  background: linear-gradient(145deg, #6b3a3a, #4a2c2c);  /* Deep Burgundy - NO RED */
   color: #ffd700;
   border: 2px solid #ffd700;
-  box-shadow: 0 0 30px rgba(139,0,0,0.5);
-  transition: all 0.3s;
-  letter-spacing: 3px;
+  box-shadow: 0 0 30px rgba(255,215,0,0.4);
+  letter-spacing: 4px;
   text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+  animation: irresistiblePulse 1.8s ease-in-out infinite;
 }
 
+/* Glowing pulse animation */
+@keyframes irresistiblePulse {
+  0% { box-shadow: 0 0 30px rgba(255,215,0,0.4), 0 0 60px rgba(255,215,0,0.2); transform: scale(1); }
+  50% { box-shadow: 0 0 60px rgba(255,215,0,0.8), 0 0 100px rgba(255,215,0,0.5); transform: scale(1.08); }
+  100% { box-shadow: 0 0 30px rgba(255,215,0,0.4), 0 0 60px rgba(255,215,0,0.2); transform: scale(1); }
+}
+
+/* Sparkle effect */
+#yes::before {
+  content: '✨';
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  opacity: 0.9;
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+#yes::after {
+  content: '✨';
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  opacity: 0.9;
+  animation: sparkle 1.5s ease-in-out infinite 0.5s;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.7; transform: translateY(-50%) scale(1); }
+  50% { opacity: 1; transform: translateY(-50%) scale(1.3); }
+}
+
+/* Hover effect - reveals secret message */
 #yes:hover {
-  background: #a00000;
+  background: linear-gradient(145deg, #7a4a4a, #5a3a3a);
   border-color: #fff3b0;
-  transform: scale(1.08);
-  box-shadow: 0 0 50px rgba(255,215,0,0.6);
+  transform: scale(1.12);
+  box-shadow: 0 0 80px rgba(255,215,0,0.9);
 }
 
+#yes:hover::after {
+  content: '🎁 CLICK FOR SURPRISE 🎁';
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffd700;
+  color: #4a2c2c;
+  padding: 10px 20px;
+  border-radius: 40px;
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 0 30px rgba(255,215,0,0.8);
+  animation: none;
+  letter-spacing: 2px;
+}
+
+/* ---------- NOT TODAY BUTTON ---------- */
 #no{
-  padding:16px 40px;
-  font-size:20px;
-  font-weight:600;
-  border:none;
-  border-radius:50px;
-  cursor:pointer;
+  padding: 16px 40px;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
   background: #2c2c2c;
   color: #c0c0c0;
   border: 1px solid #4a4a4a;
   transition: all 0.2s;
   position: relative;
   z-index: 99;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 #no:hover {
@@ -568,7 +630,7 @@ body::after {
 .meter-fill {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #8b0000, #ffd700);
+  background: linear-gradient(90deg, #6b3a3a, #ffd700);
   border-radius: 10px;
   transition: width 1s;
 }
@@ -591,6 +653,8 @@ body::after {
   .renewal-question { font-size: 1.5em; }
   .btnRow { gap: 15px; }
   #yes, #no { padding: 14px 30px; font-size: 18px; }
+  #yes::before, #yes::after { font-size: 18px; }
+  #yes:hover::after { font-size: 14px; padding: 8px 16px; top: -40px; white-space: normal; width: 200px; }
   .letter { font-size: 26px; padding: 25px 30px; }
   .photo { width: 170px; height: 170px; }
   .floating-photo-circle { width: 60px; height: 60px; }
@@ -601,12 +665,14 @@ body::after {
   .premium-tag { font-size: 1.3em; }
   .membership-badge { font-size: 14px; padding: 8px 20px; }
   .benefit-item { padding: 6px 12px; font-size: 0.85em; }
+  #yes { font-size: 16px; padding: 12px 25px; }
+  #no { font-size: 16px; padding: 12px 25px; }
 }
 </style>
 </head>
 <body>
 
-<!-- ========= SCREEN 1 - PREMIUM SUBSCRIPTION BOX (NO YEAR, NO COFFEE, NO BEST FRIENDS, ADDED WINDOW SHOPPING) ========= -->
+<!-- ========= SCREEN 1 - PREMIUM SUBSCRIPTION BOX ========= -->
 <div id="start">
   <div class="premium-card">
     <div class="corner corner-tl"></div>
@@ -655,8 +721,8 @@ body::after {
     </div>
     
     <div class="btnRow">
-      <button id="yes">YES, FOREVER ❤️</button>
-      <button id="no">NOT TODAY ✦</button>
+      <button id="yes">✨ YES, FOREVER ✨</button>
+      <button id="no">NOT TODAY ⬇️</button>
     </div>
   </div>
 </div>
@@ -760,7 +826,7 @@ function escape() {
   noBtn.style.left = Math.random() * 80 + "%";
   noBtn.style.top = Math.random() * 80 + "%";
   
-  noBtn.innerText = msgs[i++ % msgs.length];
+  noBtn.innerText = msgs[i++ % msgs.length] + " ⬇️";
   
   grow += 0.1;
   yesBtn.style.transform = `scale(${grow})`;
@@ -867,51 +933,4 @@ function createFloatingCirclePhoto() {
   const randomPhoto = photoFiles[Math.floor(Math.random() * photoFiles.length)];
   photo.src = randomPhoto;
   
-  photo.style.left = Math.random() * 100 + "vw";
-  photo.style.bottom = "-100px";
-  
-  const size = Math.floor(Math.random() * 40) + 60;
-  photo.style.width = size + "px";
-  photo.style.height = size + "px";
-  photo.style.borderRadius = "50%";
-  photo.style.animationDuration = (Math.random() * 4 + 8) + "s";
-  photo.style.border = "3px solid #ffd700";
-  
-  document.body.appendChild(photo);
-  setTimeout(() => photo.remove(), 12000);
-}
-
-function startFloatingCirclePhotos() {
-  if(photoInterval) clearInterval(photoInterval);
-  for(let j = 0; j < 13; j++) {
-    setTimeout(createFloatingCirclePhoto, j * 200);
-  }
-  photoInterval = setInterval(createFloatingCirclePhoto, 800);
-}
-
-/* ---------- MEMORIES MODAL ---------- */
-const modal = document.getElementById('memoryModal');
-const memoriesBtn = document.getElementById('memories');
-const closeBtn = document.querySelector('.close-modal');
-
-memoriesBtn.onclick = function() {
-  modal.style.display = 'flex';
-};
-
-closeBtn.onclick = function() {
-  modal.style.display = 'none';
-};
-
-window.onclick = function(e) {
-  if(e.target == modal) {
-    modal.style.display = 'none';
-  }
-};
-
-/* ---------- INITIAL SETUP ---------- */
-document.getElementById('memories').style.display = 'none';
-document.getElementById('loveMeter').style.display = 'none';
-</script>
-
-</body>
-</html>
+  photo.style.left = Math.random() * 100 +
