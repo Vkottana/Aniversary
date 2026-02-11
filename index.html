@@ -933,4 +933,51 @@ function createFloatingCirclePhoto() {
   const randomPhoto = photoFiles[Math.floor(Math.random() * photoFiles.length)];
   photo.src = randomPhoto;
   
-  photo.style.left = Math.random() * 100 +
+  photo.style.left = Math.random() * 100 + "vw";
+  photo.style.bottom = "-100px";
+  
+  const size = Math.floor(Math.random() * 40) + 60;
+  photo.style.width = size + "px";
+  photo.style.height = size + "px";
+  photo.style.borderRadius = "50%";
+  photo.style.animationDuration = (Math.random() * 4 + 8) + "s";
+  photo.style.border = "3px solid #ffd700";
+  
+  document.body.appendChild(photo);
+  setTimeout(() => photo.remove(), 12000);
+}
+
+function startFloatingCirclePhotos() {
+  if(photoInterval) clearInterval(photoInterval);
+  for(let j = 0; j < 13; j++) {
+    setTimeout(createFloatingCirclePhoto, j * 200);
+  }
+  photoInterval = setInterval(createFloatingCirclePhoto, 800);
+}
+
+/* ---------- MEMORIES MODAL ---------- */
+const modal = document.getElementById('memoryModal');
+const memoriesBtn = document.getElementById('memories');
+const closeBtn = document.querySelector('.close-modal');
+
+memoriesBtn.onclick = function() {
+  modal.style.display = 'flex';
+};
+
+closeBtn.onclick = function() {
+  modal.style.display = 'none';
+};
+
+window.onclick = function(e) {
+  if(e.target == modal) {
+    modal.style.display = 'none';
+  }
+};
+
+/* ---------- INITIAL SETUP ---------- */
+document.getElementById('memories').style.display = 'none';
+document.getElementById('loveMeter').style.display = 'none';
+</script>
+
+</body>
+</html>
