@@ -29,7 +29,7 @@ body::after {
   pointer-events: none;
 }
 
-/* ---------- FIRST SCREEN - PREMIUM SUBSCRIPTION BOX ---------- */
+/* ---------- FIRST SCREEN - PREMIUM SUBSCRIPTION BOX (NO YEAR) ---------- */
 #start{
   height:100vh;
   display:flex;
@@ -178,39 +178,48 @@ body::after {
   background: rgba(255,215,0,0.05);
   border: 1px solid rgba(255,215,0,0.2);
   border-radius: 20px;
-  padding: 20px;
+  padding: 25px 20px;
   margin: 30px 0;
 }
 
 .benefits-title {
   color: #ffd700;
-  font-size: 1.1em;
-  letter-spacing: 3px;
-  margin-bottom: 15px;
+  font-size: 1.2em;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
   text-transform: uppercase;
+  font-weight: 600;
 }
 
 .benefits-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
+  gap: 15px;
 }
 
 .benefit-item {
   background: rgba(139,0,0,0.3);
   color: #fff3e0;
-  padding: 8px 18px;
-  border-radius: 30px;
-  font-size: 0.95em;
+  padding: 10px 20px;
+  border-radius: 40px;
+  font-size: 1em;
   border: 1px solid rgba(255,215,0,0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.benefit-item i {
+  font-style: normal;
+  font-size: 1.2em;
 }
 
 .renewal-question {
-  font-size: 1.6em;
+  font-size: 1.8em;
   color: #ffd700;
   font-weight: 500;
-  margin: 30px 0 20px;
+  margin: 30px 0 25px;
   letter-spacing: 2px;
   font-family: 'Playfair Display', serif;
 }
@@ -574,10 +583,12 @@ body::after {
 @media (max-width:768px){
   .premium-card { padding: 30px 20px; }
   .wife-name { font-size: 3.2em; }
+  .premium-tag { font-size: 1.5em; }
   .plan-row { font-size: 1em; }
-  .benefits-grid { gap: 8px; }
-  .benefit-item { padding: 6px 12px; font-size: 0.85em; }
-  .renewal-question { font-size: 1.3em; }
+  .plan-label { min-width: 90px; }
+  .benefits-grid { gap: 10px; }
+  .benefit-item { padding: 8px 16px; font-size: 0.9em; }
+  .renewal-question { font-size: 1.5em; }
   .btnRow { gap: 15px; }
   #yes, #no { padding: 14px 30px; font-size: 18px; }
   .letter { font-size: 26px; padding: 25px 30px; }
@@ -588,13 +599,14 @@ body::after {
 @media (max-width:480px){
   .wife-name { font-size: 2.5em; }
   .premium-tag { font-size: 1.3em; }
-  .plan-label { min-width: 80px; }
+  .membership-badge { font-size: 14px; padding: 8px 20px; }
+  .benefit-item { padding: 6px 12px; font-size: 0.85em; }
 }
 </style>
 </head>
 <body>
 
-<!-- ========= SCREEN 1 - PREMIUM SUBSCRIPTION BOX (NO YEAR) ========= -->
+<!-- ========= SCREEN 1 - PREMIUM SUBSCRIPTION BOX (NO YEAR, NO COFFEE, NO BEST FRIENDS, ADDED WINDOW SHOPPING) ========= -->
 <div id="start">
   <div class="premium-card">
     <div class="corner corner-tl"></div>
@@ -617,7 +629,7 @@ body::after {
       </div>
       <div class="plan-row">
         <span class="plan-label">STATUS:</span>
-        <span class="plan-value status-active">❤️ ACTIVE · 13 YEARS</span>
+        <span class="plan-value status-active">❤️ ACTIVE</span>
       </div>
       <div class="plan-row">
         <span class="plan-label">MEMBER:</span>
@@ -626,16 +638,15 @@ body::after {
     </div>
     
     <div class="benefits-box">
-      <div class="benefits-title">✨ UNLIMITED BENEFITS ✨</div>
+      <div class="benefits-title">🔴 UNLIMITED BENEFITS 🔴</div>
       <div class="benefits-grid">
-        <span class="benefit-item">❤️ Daily Hugs</span>
-        <span class="benefit-item">💑 Forever Support</span>
-        <span class="benefit-item">☕ Morning Coffee</span>
-        <span class="benefit-item">😂 Laughter</span>
-        <span class="benefit-item">✨ Adventure</span>
-        <span class="benefit-item">🏡 Home</span>
-        <span class="benefit-item">💕 Infinite Love</span>
-        <span class="benefit-item">🤝 Best Friends</span>
+        <span class="benefit-item"><i>❤️</i> Daily Hugs</span>
+        <span class="benefit-item"><i>❤️</i> Forever Support</span>
+        <span class="benefit-item"><i>🛍️</i> Window Shopping</span>
+        <span class="benefit-item"><i>💬</i> Laughter</span>
+        <span class="benefit-item"><i>⭐</i> Adventure</span>
+        <span class="benefit-item"><i>🏠</i> Home</span>
+        <span class="benefit-item"><i>❤️</i> Infinite Love</span>
       </div>
     </div>
     
