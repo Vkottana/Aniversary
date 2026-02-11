@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Happy Anniversary My Love Siri ❤️</title>
+<title>Happy Anniversary My Love ❤️</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -12,7 +12,7 @@ body{
   height:100vh;
   overflow:hidden;
   font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,#fff5f7,#ffe4e9);
+  background:linear-gradient(135deg,#e6e6fa,#d8bfd8); /* Lavender to thistle - no pink! */
   transition:background 1s;
 }
 
@@ -30,8 +30,8 @@ body{
 
 h2{
   font-size:2.5em;
-  color:#b33951;
-  text-shadow:2px 2px 10px rgba(255,107,139,0.3);
+  color:#4b0082; /* Indigo */
+  text-shadow:2px 2px 10px rgba(106,90,205,0.3);
   margin-bottom:30px;
 }
 
@@ -53,22 +53,22 @@ button{
 }
 
 #yes{
-  background:#ff3366;
+  background:#6a5acd; /* Slate blue */
   color:white;
-  border:2px solid #ff6b8b;
+  border:2px solid #8470ff;
 }
 
 #yes:hover{
-  background:#ff1a4f;
+  background:#5a4ab0;
   transform:scale(1.1);
-  box-shadow:0 0 25px #ff3366;
+  box-shadow:0 0 25px #6a5acd;
 }
 
 #no{
-  background:#ffe5e5;
-  color:#666;
+  background:#f0f0ff;
+  color:#4b0082;
   position:relative;
-  border:2px solid #ffb3b3;
+  border:2px solid #b0a0ff;
 }
 
 /* ---------- MEMORIES GALLERY ---------- */
@@ -83,16 +83,16 @@ button{
   backdrop-filter:blur(10px);
   padding:15px 25px;
   border-radius:50px;
-  box-shadow:0 10px 30px rgba(255,51,102,0.2);
-  border:1px solid rgba(255,51,102,0.3);
+  box-shadow:0 10px 30px rgba(106,90,205,0.2);
+  border:1px solid rgba(106,90,205,0.3);
   cursor:pointer;
   transition:0.3s;
   font-weight:600;
-  color:#ff3366;
+  color:#6a5acd;
 }
 
 #memories:hover{
-  background:#ff3366;
+  background:#6a5acd;
   color:white;
   transform:translateX(-50%) scale(1.05);
 }
@@ -105,7 +105,7 @@ button{
   left:0;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.8);
+  background:rgba(75,0,130,0.8); /* Indigo with opacity */
   backdrop-filter:blur(8px);
   z-index:1000;
   justify-content:center;
@@ -140,7 +140,7 @@ button{
 }
 
 .close-modal:hover{
-  color:#ff3366;
+  color:#6a5acd;
   transform:rotate(90deg);
 }
 
@@ -152,19 +152,19 @@ button{
 }
 
 .memory-card{
-  background:#fff9f9;
+  background:#f8f8ff;
   padding:20px;
   border-radius:15px;
   text-align:center;
-  border:2px solid #ffe0e5;
+  border:2px solid #e0e0ff;
   transition:0.3s;
   cursor:pointer;
 }
 
 .memory-card:hover{
-  border-color:#ff3366;
+  border-color:#6a5acd;
   transform:translateY(-5px);
-  box-shadow:0 10px 25px rgba(255,51,102,0.2);
+  box-shadow:0 10px 25px rgba(106,90,205,0.2);
 }
 
 /* ---------- LOVE METER ---------- */
@@ -175,19 +175,19 @@ button{
   background:rgba(255,255,255,0.95);
   padding:15px 25px;
   border-radius:50px;
-  box-shadow:0 5px 20px rgba(255,51,102,0.15);
+  box-shadow:0 5px 20px rgba(106,90,205,0.15);
   display:none;
   align-items:center;
   gap:15px;
   z-index:200;
   backdrop-filter:blur(5px);
-  border:1px solid #ffb3b3;
+  border:1px solid #b0a0ff;
 }
 
 .meter-bar{
   width:150px;
   height:12px;
-  background:#ffe0e5;
+  background:#e6e6fa;
   border-radius:10px;
   overflow:hidden;
 }
@@ -195,7 +195,7 @@ button{
 .meter-fill{
   height:100%;
   width:0%;
-  background:linear-gradient(90deg,#ff3366,#ff6b8b);
+  background:linear-gradient(90deg,#6a5acd,#8470ff);
   border-radius:10px;
   transition:width 1s;
   animation:pulse 2s infinite;
@@ -215,7 +215,7 @@ button{
 }
 
 .reason-card{
-  background:#fff0f3;
+  background:#f0f0ff;
   padding:15px;
   border-radius:12px;
   text-align:center;
@@ -225,12 +225,12 @@ button{
 }
 
 .reason-card:hover{
-  border-color:#ff3366;
+  border-color:#6a5acd;
   background:white;
 }
 
 .reason-cover{
-  background:#ff99aa;
+  background:#8470ff;
   color:white;
   padding:12px;
   border-radius:10px;
@@ -239,7 +239,7 @@ button{
 
 .reason-text{
   display:none;
-  color:#b33951;
+  color:#4b0082;
   font-weight:500;
 }
 
@@ -250,7 +250,7 @@ button{
   right:30px;
   width:60px;
   height:60px;
-  background:rgba(255,51,102,0.1);
+  background:rgba(106,90,205,0.1);
   border-radius:50%;
   display:flex;
   align-items:center;
@@ -258,7 +258,7 @@ button{
   font-size:24px;
   cursor:pointer;
   backdrop-filter:blur(5px);
-  border:2px dashed #ff99aa;
+  border:2px dashed #b0a0ff;
   transition:0.3s;
   animation:glow 2s infinite;
   z-index:150;
@@ -266,8 +266,8 @@ button{
 }
 
 @keyframes glow{
-  0%,100%{box-shadow:0 0 5px #ff3366;}
-  50%{box-shadow:0 0 25px #ff3366;}
+  0%,100%{box-shadow:0 0 5px #6a5acd;}
+  50%{box-shadow:0 0 25px #6a5acd;}
 }
 
 /* ---------- TIMELINE ---------- */
@@ -284,7 +284,7 @@ button{
   padding:10px;
   background:white;
   border-radius:12px;
-  border-left:5px solid #ff3366;
+  border-left:5px solid #6a5acd;
 }
 
 /* ---------- FINAL SCREEN ---------- */
@@ -296,47 +296,56 @@ button{
   justify-content:center;
   position:relative;
   z-index:20;
+  padding:20px;
+  box-sizing:border-box;
+}
+
+.photo-container {
+  position:relative;
+  margin-bottom:15px;
 }
 
 .photo{
-  width:220px;
-  height:220px;
+  width:180px; /* Smaller size to fit better */
+  height:180px;
   border-radius:50%;
-  border:6px solid #ff3366;
+  border:5px solid #6a5acd;
   object-fit:cover;
-  margin-bottom:20px;
-  box-shadow:0 15px 40px rgba(255,51,102,0.3);
+  box-shadow:0 15px 40px rgba(106,90,205,0.3);
   animation:floatPhoto 3s ease-in-out infinite;
 }
 
 @keyframes floatPhoto{
   0%,100%{transform:translateY(0px);}
-  50%{transform:translateY(-10px);}
+  50%{transform:translateY(-8px);}
 }
 
 .letter{
   background:rgba(255,255,255,0.95);
-  padding:40px 50px;
+  padding:25px 40px;
   border-radius:30px;
   font-family:'Dancing Script',cursive;
-  font-size:32px;
-  color:#b33951;
-  box-shadow:0 20px 50px rgba(255,51,102,0.25);
-  line-height:1.7;
+  font-size:26px; /* Slightly smaller for better fit */
+  color:#4b0082; /* Indigo - no pink! */
+  box-shadow:0 20px 50px rgba(106,90,205,0.25);
+  line-height:1.5;
   border:2px solid white;
   backdrop-filter:blur(5px);
-  max-width:600px;
-  margin:0 20px;
+  max-width:550px;
+  width:90%;
+  margin:0 auto;
   position:relative;
+  max-height:50vh;
+  overflow-y:auto; /* Scroll if needed */
 }
 
 .letter::before{
   content:'"';
   position:absolute;
-  top:-20px;
-  left:20px;
-  font-size:80px;
-  color:#ff99aa;
+  top:-15px;
+  left:15px;
+  font-size:70px;
+  color:#b0a0ff;
   font-family:serif;
   opacity:0.3;
 }
@@ -354,7 +363,7 @@ button{
 .heart{
   position:fixed;
   bottom:-20px;
-  color:#ff3366;
+  color:#6a5acd; /* Changed from red to blue */
   font-size:24px;
   animation:float 6s linear forwards;
   z-index:1000;
@@ -381,8 +390,14 @@ canvas{
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width:768px){
-  .letter{font-size:24px;padding:30px;}
+  .letter{font-size:22px;padding:20px;max-height:60vh;}
+  .photo{width:150px;height:150px;}
   h2{font-size:1.8em;}
+}
+
+@media (max-height:700px){
+  .photo{width:140px;height:140px;}
+  .letter{font-size:20px;padding:15px;}
 }
 </style>
 </head>
@@ -395,7 +410,7 @@ canvas{
 <!-- ========= SCREEN 1 ========= -->
 <div id="start">
   <h2>
-    ✨ Siri ✨<br><br>
+    ✨ [Her Name] ✨<br><br>
     Continue subscription for lifetime?
   </h2>
 
@@ -407,11 +422,11 @@ canvas{
 
 <!-- ========= LOVE METER ========= -->
 <div id="loveMeter">
-  <span style="color:#ff3366; font-weight:600;">❤️ Love Level</span>
+  <span style="color:#6a5acd; font-weight:600;">❤️ Love Level</span>
   <div class="meter-bar">
     <div class="meter-fill" id="loveFill"></div>
   </div>
-  <span id="lovePercentage" style="color:#b33951; font-weight:600;">100%</span>
+  <span id="lovePercentage" style="color:#4b0082; font-weight:600;">100%</span>
 </div>
 
 <!-- ========= MEMORIES BUTTON ========= -->
@@ -421,13 +436,13 @@ canvas{
 <div id="memoryModal" class="modal">
   <div class="modal-content">
     <span class="close-modal">&times;</span>
-    <h2 style="color:#b33951; font-family:'Dancing Script'; font-size:36px; margin-top:0;">Our Journey Together ❤️</h2>
+    <h2 style="color:#4b0082; font-family:'Dancing Script'; font-size:36px; margin-top:0;">Our Journey Together ❤️</h2>
     
     <div class="timeline">
       <div class="timeline-item">
         <span style="font-size:30px;">💑</span>
         <div>
-          <h3 style="margin:0; color:#ff3366;">The Day We Met</h3>
+          <h3 style="margin:0; color:#6a5acd;">The Day We Met</h3>
           <p style="margin:5px 0 0;">When our story began... ✨</p>
         </div>
       </div>
@@ -435,7 +450,7 @@ canvas{
       <div class="timeline-item">
         <span style="font-size:30px;">💍</span>
         <div>
-          <h3 style="margin:0; color:#ff3366;">Our Wedding</h3>
+          <h3 style="margin:0; color:#6a5acd;">Our Wedding</h3>
           <p style="margin:5px 0 0;">The best decision of my life ❤️</p>
         </div>
       </div>
@@ -443,14 +458,13 @@ canvas{
       <div class="timeline-item">
         <span style="font-size:30px;">🏠</span>
         <div>
-          <h3 style="margin:0; color:#ff3366;">Building Our Home</h3>
+          <h3 style="margin:0; color:#6a5acd;">Building Our Home</h3>
           <p style="margin:5px 0 0;">Every day with you is beautiful 🏡</p>
         </div>
       </div>
     </div>
     
     <div class="memory-grid">
-      <!-- Add your actual photos here -->
       <div class="memory-card" onclick="revealSecret(this, 'Your smile lights up my world')">
         <span style="font-size:40px;">🌟</span>
         <p style="margin:10px 0 0; font-weight:600;">First Date</p>
@@ -470,10 +484,8 @@ canvas{
       </div>
     </div>
     
-    <h3 style="color:#b33951; margin-top:30px;">100 Reasons Why I Love You ❤️</h3>
-    <div class="reasons-container" id="reasonsGrid">
-      <!-- Reasons will be populated by JavaScript -->
-    </div>
+    <h3 style="color:#4b0082; margin-top:30px;">100 Reasons Why I Love You ❤️</h3>
+    <div class="reasons-container" id="reasonsGrid"></div>
   </div>
 </div>
 
@@ -484,13 +496,15 @@ canvas{
 
 <!-- ========= FINAL SCREEN ========= -->
 <div id="final">
-  <img src="siri.jpg" class="photo" id="wifePhoto" onerror="this.src='https://via.placeholder.com/220?text=❤️'">
+  <div class="photo-container">
+    <img src="siri.jpg" class="photo" id="wifePhoto" onerror="this.src='https://via.placeholder.com/180?text=❤️'">
+  </div>
   
   <div class="letter">
     <div class="line" style="animation-delay:0s">Dear Siri,</div><br>
 
-    <div class="line" style="animation-delay:.6s">Subscription renewed successfully 😂</div>
-    <div class="line" style="animation-delay:1.2s">No cancellation allowed forever 😜</div><br>
+    <div class="line" style="animation-delay:.6s">Subscription renewed successfully 🎁</div>
+    <div class="line" style="animation-delay:1.2s">No cancellation allowed forever 😊</div><br>
 
     <div class="line" style="animation-delay:1.8s">Jokes apart…</div>
     <div class="line" style="animation-delay:2.4s">Happy anniversary my love Siri ❤️</div><br>
@@ -501,7 +515,7 @@ canvas{
     <div class="line" style="animation-delay:3.9s">and my forever. ❤️</div><br>
 
     <div class="line" style="animation-delay:4.4s">Love you always & forever ❤️</div>
-    <div class="line" style="animation-delay:4.8s">– Your Vasu</div>
+    <div class="line" style="animation-delay:4.8s">– [Your Name]</div>
   </div>
 </div>
 
@@ -509,6 +523,7 @@ canvas{
 /* ---------- NO BUTTON ESCAPE ---------- */
 const noBtn=document.getElementById("no");
 const yesBtn=document.getElementById("yes");
+
 const msgs=[
   "Nice try 😜",
   "No cancellation 🚫",
@@ -529,8 +544,6 @@ function escape(){
   noBtn.style.top=Math.random()*80+"%";
   grow+=0.1;
   yesBtn.style.transform=`scale(${grow})`;
-  
-  // Add mini confetti on escape attempts
   shootConfetti(5);
 }
 
@@ -538,6 +551,8 @@ noBtn.addEventListener("click",escape);
 noBtn.addEventListener("touchstart",escape);
 
 /* ---------- YES CLICK - MAIN EVENT ---------- */
+let audio = null;
+
 yesBtn.onclick=()=>{
   document.getElementById("start").style.display="none";
   document.getElementById("final").style.display="flex";
@@ -545,15 +560,13 @@ yesBtn.onclick=()=>{
   document.getElementById("memories").style.display="block";
   document.getElementById("magicSpot").style.display="flex";
   
-  // Full confetti celebration
+  // Kesariya song - plays continuously
+  audio = new Audio("kesariya.mp3");
+  audio.loop = true;
+  audio.volume = 0.5;
+  audio.play().catch(e => console.log("Audio play failed:", e));
+  
   startConfetti();
-  
-  // Try to play audio - removed dependency on external file
-  const audio=new Audio();
-  audio.src = "https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3";
-  audio.volume=0.4;
-  audio.play().catch(e=>console.log("Audio play failed:",e));
-  
   startHearts();
   increaseLoveMeter();
   populateReasons();
@@ -605,7 +618,7 @@ window.revealReason = function(card, reason){
 
 window.revealSecret = function(card, secret){
   const originalText=card.innerHTML;
-  card.innerHTML=`<span style="font-size:30px;">💝</span><p style="margin:10px 0 0; font-weight:600; color:#ff3366;">${secret}</p>`;
+  card.innerHTML=`<span style="font-size:30px;">💝</span><p style="margin:10px 0 0; font-weight:600; color:#6a5acd;">${secret}</p>`;
   setTimeout(()=>{
     card.innerHTML=originalText;
   },2000);
@@ -620,13 +633,13 @@ window.unlockMagicSurprise = function(){
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: linear-gradient(135deg, #ff3366, #ff6b8b);
+    background: linear-gradient(135deg, #6a5acd, #8470ff);
     color: white;
     padding: 30px 50px;
     border-radius: 20px;
     font-size: 28px;
     font-family: 'Dancing Script', cursive;
-    box-shadow: 0 20px 50px rgba(255,51,102,0.5);
+    box-shadow: 0 20px 50px rgba(106,90,205,0.5);
     z-index: 2000;
     animation: popIn 0.5s;
     text-align: center;
@@ -636,12 +649,11 @@ window.unlockMagicSurprise = function(){
     🎁✨ SURPRISE! ✨🎁<br>
     <span style="font-size: 20px;">You found my secret spot!</span><br><br>
     I love you more than all the stars in the sky 🌟<br>
-    Forever yours, Vasu ❤️
+    Forever yours ❤️
   `;
   document.body.appendChild(surpriseMsg);
   setTimeout(()=>surpriseMsg.remove(), 5000);
   
-  // Big confetti burst
   for(let i=0;i<30;i++){
     setTimeout(()=>shootConfetti(15), i*50);
   }
@@ -689,7 +701,7 @@ class Particle{
     this.vx=Math.random()*6-3;
     this.vy=Math.random()*6-3;
     this.size=Math.random()*8+4;
-    this.color=`hsl(${Math.random()*60 + 330}, 80%, 60%)`;
+    this.color=`hsl(${Math.random()*60 + 240}, 70%, 60%)`; /* Blue/purple tones */
     this.life=1;
   }
   
@@ -747,7 +759,7 @@ function animate(){
 function createHeart(){
   const h=document.createElement("div");
   h.className="heart";
-  h.innerHTML="❤️";
+  h.innerHTML="💙"; /* Blue heart instead of red */
   h.style.left=Math.random()*100+"vw";
   h.style.animationDuration=(Math.random()*3+4)+"s";
   h.style.fontSize=(Math.random()*20+20)+"px";
