@@ -12,8 +12,31 @@ body{
   height:100vh;
   overflow:hidden;
   font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,#e6e6fa,#d8bfd8);
-  transition:background 1s;
+  
+  /* ✨ ANIMATED GRADIENT BACKGROUND - ROMANTIC & DYNAMIC ✨ */
+  background: linear-gradient(-45deg, #ffb3c6, #ffd9e8, #ffe5f1, #ffc2d4);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  transition: background 1s;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Romantic overlay for depth */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, transparent 0%, rgba(255, 192, 203, 0.1) 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* ---------- FIRST SCREEN ---------- */
@@ -30,9 +53,15 @@ body{
 
 h2{
   font-size:3em;
-  color:#4b0082;
-  text-shadow:2px 2px 10px rgba(106,90,205,0.3);
+  color:#b3395c;
+  text-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
   margin-bottom:30px;
+  animation: floatText 3s ease-in-out infinite;
+}
+
+@keyframes floatText {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
 
 .btnRow{
@@ -41,34 +70,69 @@ h2{
   margin-top:15px;
 }
 
-button{
+/* ❤️ YES BUTTON - GLOWING PULSE ❤️ */
+#yes{
   padding:18px 45px;
   font-size:24px;
   font-weight:600;
   border:none;
   border-radius:50px;
   cursor:pointer;
-  transition:all 0.3s cubic-bezier(0.175,0.885,0.32,1.275);
-  box-shadow:0 8px 20px rgba(0,0,0,0.1);
+  background: #ff3366;
+  color: white;
+  border: 2px solid #ff99aa;
+  box-shadow: 0 0 20px #ff3366;
+  animation: pulseGlow 1.5s ease-in-out infinite;
+  transition: all 0.3s;
+  position: relative;
+  z-index: 100;
 }
 
-#yes{
-  background:#6a5acd;
-  color:white;
-  border:2px solid #8470ff;
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 20px #ff3366, 0 0 40px #ff3366; transform: scale(1); }
+  50% { box-shadow: 0 0 40px #ff69b4, 0 0 80px #ff69b4; transform: scale(1.05); }
+  100% { box-shadow: 0 0 20px #ff3366, 0 0 40px #ff3366; transform: scale(1); }
 }
 
-#yes:hover{
-  background:#5a4ab0;
-  transform:scale(1.1);
-  box-shadow:0 0 25px #6a5acd;
+#yes:hover {
+  background: #ff1a4f;
+  border-color: white;
+  transform: scale(1.1);
 }
 
+/* 💔 NO BUTTON - SHAKE + RUNAWAY 💔 */
 #no{
-  background:#f0f0ff;
-  color:#4b0082;
-  position:relative;
-  border:2px solid #b0a0ff;
+  padding:18px 45px;
+  font-size:24px;
+  font-weight:600;
+  border:none;
+  border-radius:50px;
+  cursor:pointer;
+  background: #ffe5e5;
+  color: #666;
+  border: 2px solid #ffb3b3;
+  transition: all 0.2s;
+  position: relative;
+  z-index: 99;
+}
+
+/* Shake animation */
+.shake {
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
 /* ---------- MEMORIES BUTTON ---------- */
@@ -83,17 +147,23 @@ button{
   backdrop-filter:blur(10px);
   padding:18px 30px;
   border-radius:50px;
-  box-shadow:0 10px 30px rgba(106,90,205,0.2);
-  border:1px solid rgba(106,90,205,0.3);
+  box-shadow:0 10px 30px rgba(255,51,102,0.2);
+  border:1px solid rgba(255,51,102,0.3);
   cursor:pointer;
   transition:0.3s;
   font-weight:600;
-  color:#6a5acd;
+  color:#ff3366;
   font-size:20px;
+  animation: floatButton 3s ease-in-out infinite;
+}
+
+@keyframes floatButton {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-5px); }
 }
 
 #memories:hover{
-  background:#6a5acd;
+  background:#ff3366;
   color:white;
   transform:translateX(-50%) scale(1.05);
 }
@@ -106,7 +176,7 @@ button{
   left:0;
   width:100%;
   height:100%;
-  background:rgba(75,0,130,0.8);
+  background:rgba(255,105,180,0.2);
   backdrop-filter:blur(8px);
   z-index:1000;
   justify-content:center;
@@ -114,7 +184,7 @@ button{
 }
 
 .modal-content{
-  background:white;
+  background:rgba(255,255,255,0.95);
   padding:40px;
   border-radius:30px;
   max-width:600px;
@@ -123,26 +193,8 @@ button{
   overflow-y:auto;
   position:relative;
   animation:modalPop 0.5s;
-}
-
-@keyframes modalPop{
-  from{transform:scale(0.8);opacity:0;}
-  to{transform:scale(1);opacity:1;}
-}
-
-.close-modal{
-  position:absolute;
-  top:20px;
-  right:25px;
-  font-size:30px;
-  cursor:pointer;
-  color:#999;
-  transition:0.3s;
-}
-
-.close-modal:hover{
-  color:#6a5acd;
-  transform:rotate(90deg);
+  border: 2px solid rgba(255,105,180,0.3);
+  box-shadow: 0 20px 50px rgba(255,51,102,0.2);
 }
 
 /* ---------- FINAL SCREEN ---------- */
@@ -167,9 +219,9 @@ button{
   width:200px;
   height:200px;
   border-radius:50%;
-  border:6px solid #6a5acd;
+  border:6px solid #ff3366;
   object-fit:cover;
-  box-shadow:0 15px 40px rgba(106,90,205,0.3);
+  box-shadow:0 0 30px rgba(255,51,102,0.5);
   animation:floatPhoto 3s ease-in-out infinite;
 }
 
@@ -184,8 +236,8 @@ button{
   border-radius:30px;
   font-family:'Dancing Script',cursive;
   font-size:30px;
-  color:#4b0082;
-  box-shadow:0 20px 50px rgba(106,90,205,0.25);
+  color:#b3395c;
+  box-shadow:0 20px 50px rgba(255,51,102,0.25);
   line-height:1.6;
   border:2px solid white;
   backdrop-filter:blur(5px);
@@ -195,26 +247,12 @@ button{
   position:relative;
   max-height:60vh;
   overflow-y:auto;
+  animation: glowLetter 3s ease-in-out infinite;
 }
 
-.letter::before{
-  content:'"';
-  position:absolute;
-  top:-15px;
-  left:15px;
-  font-size:70px;
-  color:#b0a0ff;
-  font-family:serif;
-  opacity:0.3;
-}
-
-.line{
-  opacity:0;
-  animation:show 0.8s forwards;
-}
-
-@keyframes show{
-  to{opacity:1;}
+@keyframes glowLetter {
+  0%, 100% { box-shadow: 0 20px 50px rgba(255,51,102,0.25); }
+  50% { box-shadow: 0 20px 70px rgba(255,105,180,0.4); }
 }
 
 /* ---------- PHOTO HEARTS (FLOATING PHOTOS) ---------- */
@@ -226,7 +264,7 @@ button{
   border-radius:50%;
   object-fit:cover;
   border:3px solid #ff69b4;
-  box-shadow:0 0 20px rgba(255,105,180,0.5);
+  box-shadow:0 0 30px rgba(255,105,180,0.6);
   animation:floatUp 8s linear forwards;
   z-index:1000;
   pointer-events:none;
@@ -234,7 +272,7 @@ button{
 
 @keyframes floatUp{
   to{
-    transform:translateY(-130vh) rotate(360deg);
+    transform:translateY(-130vh) rotate(720deg);
     opacity:0;
   }
 }
@@ -248,7 +286,7 @@ button{
   animation:floatHeart 6s linear forwards;
   z-index:1000;
   pointer-events:none;
-  text-shadow:0 0 10px rgba(255,105,180,0.5);
+  text-shadow:0 0 20px rgba(255,105,180,0.8);
 }
 
 @keyframes floatHeart{
@@ -269,7 +307,7 @@ canvas{
   z-index:999;
 }
 
-/* ---------- RESPONSIVE - BIGGER FOR MOBILE ---------- */
+/* ---------- RESPONSIVE ---------- */
 @media (max-width:768px){
   .letter{font-size:28px;padding:25px 30px;max-height:70vh;}
   .photo{width:180px;height:180px;}
@@ -308,12 +346,12 @@ canvas{
 </div>
 
 <!-- ========= LOVE METER ========= -->
-<div id="loveMeter" style="display:none; position:fixed; top:20px; right:20px; background:rgba(255,255,255,0.95); padding:15px 25px; border-radius:50px; box-shadow:0 5px 20px rgba(106,90,205,0.15); align-items:center; gap:15px; z-index:200; backdrop-filter:blur(5px); border:1px solid #b0a0ff;">
-  <span style="color:#6a5acd; font-weight:600;">❤️ Love Level</span>
-  <div style="width:150px; height:12px; background:#e6e6fa; border-radius:10px; overflow:hidden;">
-    <div id="loveFill" style="height:100%; width:0%; background:linear-gradient(90deg,#6a5acd,#8470ff); border-radius:10px; transition:width 1s;"></div>
+<div id="loveMeter" style="display:none; position:fixed; top:20px; right:20px; background:rgba(255,255,255,0.95); padding:15px 25px; border-radius:50px; box-shadow:0 5px 20px rgba(255,51,102,0.2); align-items:center; gap:15px; z-index:200; backdrop-filter:blur(5px); border:1px solid #ffb3b3;">
+  <span style="color:#ff3366; font-weight:600;">❤️ Love Level</span>
+  <div style="width:150px; height:12px; background:#ffe5e5; border-radius:10px; overflow:hidden;">
+    <div id="loveFill" style="height:100%; width:0%; background:linear-gradient(90deg,#ff3366,#ff69b4); border-radius:10px; transition:width 1s;"></div>
   </div>
-  <span id="lovePercentage" style="color:#4b0082; font-weight:600;">100%</span>
+  <span id="lovePercentage" style="color:#b3395c; font-weight:600;">100%</span>
 </div>
 
 <!-- ========= MEMORIES BUTTON ========= -->
@@ -322,37 +360,37 @@ canvas{
 <!-- ========= MEMORIES MODAL ========= -->
 <div id="memoryModal" class="modal">
   <div class="modal-content">
-    <span class="close-modal">&times;</span>
-    <h2 style="color:#4b0082; font-family:'Dancing Script'; font-size:42px; margin-top:0; text-align:center;">
+    <span class="close-modal" style="position:absolute; top:20px; right:25px; font-size:30px; cursor:pointer; color:#999;">&times;</span>
+    <h2 style="color:#b3395c; font-family:'Dancing Script'; font-size:42px; margin-top:0; text-align:center;">
       📸 Beautiful Memories 📸
     </h2>
-    <p style="color:#6a5acd; text-align:center; font-size:18px; margin-bottom:30px;">Our journey together in pictures ❤️</p>
+    <p style="color:#ff3366; text-align:center; font-size:18px; margin-bottom:30px;">Our journey together in pictures ❤️</p>
     
     <div style="margin:30px 0;">
-      <div style="display:flex; align-items:center; gap:15px; margin-bottom:20px; padding:10px; background:white; border-radius:12px; border-left:5px solid #6a5acd;">
+      <div style="display:flex; align-items:center; gap:15px; margin-bottom:20px; padding:10px; background:white; border-radius:12px; border-left:5px solid #ff3366;">
         <span style="font-size:30px;">💑</span>
         <div>
-          <h3 style="margin:0; color:#6a5acd;">The Day We Met</h3>
+          <h3 style="margin:0; color:#ff3366;">The Day We Met</h3>
           <p style="margin:5px 0 0;">When our story began... ✨</p>
         </div>
       </div>
-      <div style="display:flex; align-items:center; gap:15px; margin-bottom:20px; padding:10px; background:white; border-radius:12px; border-left:5px solid #6a5acd;">
+      <div style="display:flex; align-items:center; gap:15px; margin-bottom:20px; padding:10px; background:white; border-radius:12px; border-left:5px solid #ff3366;">
         <span style="font-size:30px;">💍</span>
         <div>
-          <h3 style="margin:0; color:#6a5acd;">Our Wedding</h3>
+          <h3 style="margin:0; color:#ff3366;">Our Wedding</h3>
           <p style="margin:5px 0 0;">The best decision of my life ❤️</p>
         </div>
       </div>
-      <div style="display:flex; align-items:center; gap:15px; margin-bottom:20px; padding:10px; background:white; border-radius:12px; border-left:5px solid #6a5acd;">
+      <div style="display:flex; align-items:center; gap:15px; margin-bottom:20px; padding:10px; background:white; border-radius:12px; border-left:5px solid #ff3366;">
         <span style="font-size:30px;">🏠</span>
         <div>
-          <h3 style="margin:0; color:#6a5acd;">Building Our Home</h3>
+          <h3 style="margin:0; color:#ff3366;">Building Our Home</h3>
           <p style="margin:5px 0 0;">Every day with you is beautiful 🏡</p>
         </div>
       </div>
     </div>
     
-    <h3 style="color:#4b0082; margin-top:30px; text-align:center;">100 Reasons Why I Love You ❤️</h3>
+    <h3 style="color:#b3395c; margin-top:30px; text-align:center;">100 Reasons Why I Love You ❤️</h3>
     <div id="reasonsGrid" style="display:grid; grid-template-columns:repeat(2,1fr); gap:15px; margin:20px 0;"></div>
   </div>
 </div>
@@ -364,21 +402,21 @@ canvas{
   </div>
   
   <div class="letter">
-    <div class="line" style="animation-delay:0s">Dear Siri,</div><br>
+    <div class="line" style="opacity:0; animation:show 0.8s forwards; animation-delay:0s">Dear Siri,</div><br>
 
-    <div class="line" style="animation-delay:.6s">Subscription renewed successfully 🎁</div>
-    <div class="line" style="animation-delay:1.2s">No cancellation allowed forever 😊</div><br>
+    <div class="line" style="opacity:0; animation:show 0.8s forwards; animation-delay:.6s">Subscription renewed successfully 🎁</div>
+    <div class="line" style="opacity:0; animation:show 0.8s forwards; animation-delay:1.2s">No cancellation allowed forever 😊</div><br>
 
-    <div class="line" style="animation-delay:1.8s">Jokes apart…</div>
-    <div class="line" style="animation-delay:2.4s">Happy anniversary my love Siri ❤️</div><br>
+    <div class="line" style="opacity:0; animation:show 0.8s forwards; animation-delay:1.8s">Jokes apart…</div>
+    <div class="line" style="opacity:0; animation:show 0.8s forwards; animation-delay:2.4s">Happy anniversary my love Siri ❤️</div><br>
 
-    <div class="line" style="animation-delay:3s">You're not just my wife,</div>
-    <div class="line" style="animation-delay:3.3s">you're my best friend,</div>
-    <div class="line" style="animation-delay:3.6s">my peace, my happiness,</div>
-    <div class="line" style="animation-delay:3.9s">and my forever. ❤️</div><br>
+    <div class="line" style="opacity:0; animation:show 0.8s forwards; animation-delay:3s">You're not just my wife,</div>
+    <div class="line" style="opacity:0; animation:show 0.8s forwards; animation-delay:3.3s">you're my best friend,</div>
+    <div class="line" style="opacity:0; animation:show 0.8s forwards; animation-delay:3.6s">my peace, my happiness,</div>
+    <div class="line" style="opacity:0; animation:show 0.8s forwards; animation-delay:3.9s">and my forever. ❤️</div><br>
 
-    <div class="line" style="animation-delay:4.4s">Love you always & forever ❤️</div>
-    <div class="line" style="animation-delay:4.8s">– Vasu</div>
+    <div class="line" style="opacity:0; animation:show 0.8s forwards; animation-delay:4.4s">Love you always & forever ❤️</div>
+    <div class="line" style="opacity:0; animation:show 0.8s forwards; animation-delay:4.8s">– Vasu</div>
   </div>
 </div>
 
@@ -401,17 +439,40 @@ let i=0;
 let grow=1;
 
 function escape(){
-  noBtn.innerText=msgs[i++%msgs.length];
+  // 💔 SHAKE + RUNAWAY - 3 times more dramatic!
+  noBtn.classList.add('shake');
+  setTimeout(() => noBtn.classList.remove('shake'), 500);
+  
+  // Runaway to random position
   noBtn.style.position="fixed";
   noBtn.style.left=Math.random()*80+"%";
   noBtn.style.top=Math.random()*80+"%";
+  noBtn.innerText=msgs[i++%msgs.length];
+  
+  // YES button grows
   grow+=0.1;
   yesBtn.style.transform=`scale(${grow})`;
-  shootConfetti(5);
+  
+  // Mini confetti on escape
+  shootConfetti(8);
+  
+  // Sad sound effect (optional - remove if you don't have file)
+  try {
+    let sadSound = new Audio();
+    sadSound.src = "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoA";
+    sadSound.volume = 0.2;
+    sadSound.play();
+  } catch(e) {}
 }
 
 noBtn.addEventListener("click",escape);
 noBtn.addEventListener("touchstart",escape);
+
+// Also shake on hover (teasing)
+noBtn.addEventListener("mouseover", function() {
+  this.classList.add('shake');
+  setTimeout(() => this.classList.remove('shake'), 500);
+});
 
 /* ---------- YES CLICK - MAIN EVENT ---------- */
 let audio = null;
@@ -433,6 +494,14 @@ yesBtn.onclick=()=>{
   startPhotoHearts();
   increaseLoveMeter();
   populateReasons();
+  
+  // Happy chime (optional)
+  try {
+    let chime = new Audio();
+    chime.src = "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoA";
+    chime.volume = 0.3;
+    chime.play();
+  } catch(e) {}
 };
 
 /* ---------- LOVE METER ---------- */
@@ -457,18 +526,18 @@ function populateReasons(){
   let html='';
   for(let r of reasons){
     html+=`
-      <div style="background:#f0f0ff; padding:15px; border-radius:12px; text-align:center; cursor:pointer; border:2px solid transparent; transition:0.3s;" 
-           onclick="this.innerHTML='<div style=\\'color:#4b0082; font-weight:500; padding:12px;\\'>${r}</div>'; shootConfetti(5);"
-           onmouseover="this.style.borderColor='#6a5acd'"
+      <div style="background:#fff0f3; padding:15px; border-radius:12px; text-align:center; cursor:pointer; border:2px solid transparent; transition:0.3s;" 
+           onclick="this.innerHTML='<div style=\\'color:#b3395c; font-weight:500; padding:12px;\\'>${r}</div>'; shootConfetti(5);"
+           onmouseover="this.style.borderColor='#ff3366'"
            onmouseout="this.style.borderColor='transparent'">
-        <div style="background:#8470ff; color:white; padding:12px; border-radius:10px; font-weight:bold;">❤️ Click to reveal</div>
+        <div style="background:#ff99aa; color:white; padding:12px; border-radius:10px; font-weight:bold;">❤️ Click to reveal</div>
       </div>
     `;
   }
   document.getElementById('reasonsGrid').innerHTML=html;
 }
 
-/* ---------- FLOATING PHOTOS - 13 PICS FROM BOTTOM TO TOP IN CIRCLES ---------- */
+/* ---------- FLOATING PHOTOS - 13 PICS ---------- */
 const photoFiles = [
   "1.jpg", "2.jpg", "3.jpg", "4.JPG", "5.JPG", "6.JPG", "7.JPG", 
   "8.JPG", "9.JPG", "10.JPG", "11.JPG", "12.jpg", "13.jpg"
@@ -478,23 +547,17 @@ function createPhotoHeart(){
   const photo = document.createElement("img");
   photo.className = "photo-heart";
   
-  // Pick random photo from the 13
   const randomPhoto = photoFiles[Math.floor(Math.random() * photoFiles.length)];
   photo.src = randomPhoto;
   
-  // Random starting position
   photo.style.left = Math.random() * 100 + "vw";
   photo.style.bottom = "-100px";
   
-  // Random size variation
   const size = Math.floor(Math.random() * 40) + 50;
   photo.style.width = size + "px";
   photo.style.height = size + "px";
   
-  // Random animation duration
   photo.style.animationDuration = (Math.random() * 4 + 8) + "s";
-  
-  // Pink border
   photo.style.border = "3px solid #ff69b4";
   
   document.body.appendChild(photo);
@@ -555,7 +618,7 @@ class Particle{
     this.vx=Math.random()*6-3;
     this.vy=Math.random()*6-3;
     this.size=Math.random()*8+4;
-    this.color=`hsl(${Math.random()*60 + 240}, 70%, 60%)`;
+    this.color=`hsl(${Math.random()*60 + 330}, 80%, 60%)`; // Pink/red tones
     this.life=1;
   }
   
