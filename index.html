@@ -13,44 +13,12 @@ body{
   overflow:hidden;
   font-family:'Poppins',sans-serif;
   
-  /* ✨ DARK ROMANTIC GRADIENT - DEEP & LUXURIOUS ✨ */
-  background: radial-gradient(circle at 30% 40%, #1a0f0c, #0a0504, #020202);
-  background-size: 300% 300%;
-  animation: romanticDarkness 20s ease infinite;
+  /* ✨ BLACK & GOLD - CLEAN & ELEGANT ✨ */
+  background: linear-gradient(145deg, #0a0504, #000000);
+  background-size: 400% 400%;
 }
 
-@keyframes romanticDarkness {
-  0% { background-position: 0% 0%; }
-  25% { background-position: 100% 0%; }
-  50% { background-position: 100% 100%; }
-  75% { background-position: 0% 100%; }
-  100% { background-position: 0% 0%; }
-}
-
-/* Sparkling stars overlay */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(2px 2px at 20px 30px, #ffd700, rgba(0,0,0,0)),
-              radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
-              radial-gradient(2px 2px at 130px 90px, #ff9e7a, rgba(0,0,0,0)),
-              radial-gradient(2px 2px at 200px 140px, #ffd700, rgba(0,0,0,0));
-  background-size: 250px 250px;
-  opacity: 0.15;
-  pointer-events: none;
-  animation: twinkle 4s ease-in-out infinite;
-}
-
-@keyframes twinkle {
-  0%, 100% { opacity: 0.1; }
-  50% { opacity: 0.25; }
-}
-
-/* Golden sparkle */
+/* Subtle gold sparkle - very minimal */
 body::after {
   content: '';
   position: fixed;
@@ -58,14 +26,14 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 50% 50%, rgba(255,215,0,0.05) 0%, transparent 60%);
+  background: radial-gradient(circle at 50% 50%, rgba(255,215,0,0.02) 0%, transparent 80%);
   pointer-events: none;
-  animation: goldenGlow 8s ease-in-out infinite;
+  animation: softGlow 12s ease-in-out infinite;
 }
 
-@keyframes goldenGlow {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.2); }
+@keyframes softGlow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
 }
 
 /* ---------- FIRST SCREEN ---------- */
@@ -84,15 +52,9 @@ h2{
   font-size:3.2em;
   font-family: 'Playfair Display', serif;
   color: #ffd700;
-  text-shadow: 0 0 25px rgba(255,215,0,0.6), 0 0 50px rgba(255,165,0,0.3);
+  text-shadow: 0 0 20px rgba(255,215,0,0.5);
   margin-bottom:30px;
-  animation: elegantFloat 4s ease-in-out infinite;
   letter-spacing: 2px;
-}
-
-@keyframes elegantFloat {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-8px) scale(1.02); }
 }
 
 .btnRow{
@@ -101,7 +63,7 @@ h2{
   margin-top:25px;
 }
 
-/* ❤️ YES BUTTON - ROYAL GOLD & BURGUNDY */
+/* ❤️ YES BUTTON - BURGUNDY & GOLD */
 #yes{
   padding:20px 50px;
   font-size:26px;
@@ -109,32 +71,25 @@ h2{
   border:none;
   border-radius:60px;
   cursor:pointer;
-  background: linear-gradient(145deg, #8b0000, #5e0000);
+  background: #8b0000;
   color: #ffd700;
   border: 2px solid #ffd700;
-  box-shadow: 0 0 30px rgba(139,0,0,0.7), 0 0 60px rgba(255,215,0,0.3);
-  animation: royalPulse 2s ease-in-out infinite;
-  transition: all 0.4s;
+  box-shadow: 0 0 30px rgba(139,0,0,0.5);
+  transition: all 0.3s;
   position: relative;
   z-index: 100;
   letter-spacing: 3px;
   text-transform: uppercase;
 }
 
-@keyframes royalPulse {
-  0% { box-shadow: 0 0 30px rgba(139,0,0,0.7), 0 0 60px rgba(255,215,0,0.3); transform: scale(1); }
-  50% { box-shadow: 0 0 50px rgba(139,0,0,0.9), 0 0 90px rgba(255,215,0,0.6); transform: scale(1.07); }
-  100% { box-shadow: 0 0 30px rgba(139,0,0,0.7), 0 0 60px rgba(255,215,0,0.3); transform: scale(1); }
-}
-
 #yes:hover {
-  background: linear-gradient(145deg, #a00000, #6b0000);
+  background: #a00000;
   border-color: #fff3b0;
-  transform: scale(1.12);
-  box-shadow: 0 0 60px rgba(255,215,0,0.8);
+  transform: scale(1.08);
+  box-shadow: 0 0 50px rgba(255,215,0,0.6);
 }
 
-/* 💔 NO BUTTON - DARK & MYSTERIOUS */
+/* 💔 NO BUTTON - DARK GREY */
 #no{
   padding:18px 45px;
   font-size:24px;
@@ -142,71 +97,57 @@ h2{
   border:none;
   border-radius:50px;
   cursor:pointer;
-  background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
+  background: #2c2c2c;
   color: #c0c0c0;
   border: 1px solid #4a4a4a;
-  box-shadow: 0 0 15px rgba(0,0,0,0.5);
   transition: all 0.2s;
   position: relative;
   z-index: 99;
-  text-shadow: 0 0 5px rgba(192,192,192,0.3);
 }
 
 /* Shake animation */
 .shake {
-  animation: violentShake 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 
-@keyframes violentShake {
+@keyframes shake {
   0% { transform: translate(1px, 1px) rotate(0deg); }
-  10% { transform: translate(-3px, -4px) rotate(-2deg); }
-  20% { transform: translate(-6px, 0px) rotate(2deg); }
-  30% { transform: translate(6px, 4px) rotate(0deg); }
-  40% { transform: translate(3px, -3px) rotate(2deg); }
-  50% { transform: translate(-4px, 5px) rotate(-3deg); }
-  60% { transform: translate(-8px, 3px) rotate(0deg); }
-  70% { transform: translate(8px, 2px) rotate(-2deg); }
-  80% { transform: translate(-3px, -3px) rotate(3deg); }
-  90% { transform: translate(4px, 6px) rotate(0deg); }
-  100% { transform: translate(3px, -4px) rotate(-2deg); }
+  20% { transform: translate(-3px, 0px) rotate(-1deg); }
+  40% { transform: translate(3px, 2px) rotate(1deg); }
+  60% { transform: translate(-3px, 1px) rotate(-1deg); }
+  80% { transform: translate(2px, -1px) rotate(0deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
 }
 
 /* ---------- BEAUTIFUL MEMORIES BUTTON ---------- */
 #memories{
   display:none;
   position:fixed;
-  bottom:40px;
+  bottom:30px;
   left:50%;
   transform:translateX(-50%);
   z-index:100;
-  background: rgba(10, 5, 4, 0.95);
-  backdrop-filter: blur(10px);
-  padding:18px 35px;
-  border-radius:60px;
-  box-shadow:0 0 30px rgba(255,215,0,0.3);
+  background: rgba(0,0,0,0.9);
+  backdrop-filter: blur(5px);
+  padding:16px 32px;
+  border-radius:50px;
+  box-shadow:0 0 20px rgba(255,215,0,0.3);
   border:1.5px solid #ffd700;
   cursor:pointer;
-  transition:0.4s;
+  transition:0.3s;
   font-weight:600;
   color: #ffd700;
-  font-size:22px;
+  font-size:20px;
   letter-spacing: 2px;
-  text-transform: uppercase;
-  animation: floatGold 4s ease-in-out infinite;
   font-family: 'Playfair Display', serif;
 }
 
-@keyframes floatGold {
-  0%, 100% { transform: translateX(-50%) translateY(0); box-shadow: 0 0 30px rgba(255,215,0,0.3); }
-  50% { transform: translateX(-50%) translateY(-10px); box-shadow: 0 0 50px rgba(255,215,0,0.7); }
-}
-
 #memories:hover{
-  background: #1a0f0c;
+  background: #000;
   border-color: #fff3b0;
   color: #fff3b0;
-  transform:translateX(-50%) scale(1.08);
-  box-shadow: 0 0 70px rgba(255,215,0,0.9);
+  transform:translateX(-50%) scale(1.05);
+  box-shadow: 0 0 30px rgba(255,215,0,0.6);
 }
 
 /* ---------- MEMORY MODAL ---------- */
@@ -218,106 +159,94 @@ h2{
   width:100%;
   height:100%;
   background: rgba(0,0,0,0.95);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(10px);
   z-index:1000;
   justify-content:center;
   align-items:center;
 }
 
 .modal-content{
-  background: rgba(18, 10, 8, 0.98);
-  padding:50px;
-  border-radius:30px;
-  max-width:700px;
+  background: #0a0504;
+  padding:40px;
+  border-radius:20px;
+  max-width:650px;
   width:90%;
   max-height:80vh;
   overflow-y:auto;
   position:relative;
-  animation:royalEntrance 0.6s;
-  border: 2px solid #ffd700;
-  box-shadow: 0 0 80px rgba(255,215,0,0.2);
-}
-
-@keyframes royalEntrance {
-  from{transform:scale(0.8) translateY(30px); opacity:0;}
-  to{transform:scale(1) translateY(0); opacity:1;}
+  border: 1px solid #ffd700;
+  box-shadow: 0 0 50px rgba(255,215,0,0.1);
 }
 
 .close-modal{
   position:absolute;
-  top:20px;
-  right:25px;
-  font-size:35px;
+  top:15px;
+  right:20px;
+  font-size:30px;
   cursor:pointer;
   color: #ffd700;
-  transition:0.3s;
-  opacity:0.7;
+  transition:0.2s;
 }
 
 .close-modal:hover{
   color: #fff3b0;
-  transform:rotate(180deg) scale(1.2);
-  opacity:1;
+  transform:scale(1.2);
 }
 
 /* ---------- TIMELINE ---------- */
 .timeline-item {
-  background: rgba(26, 15, 12, 0.8);
-  border-left: 5px solid #ffd700 !important;
-  border-radius: 15px;
-  padding: 20px !important;
-  margin-bottom: 25px !important;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-  transition: 0.3s;
+  background: rgba(255,215,0,0.05);
+  border-left: 4px solid #ffd700;
+  border-radius: 0 15px 15px 0;
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: 0.2s;
 }
 
 .timeline-item:hover {
-  background: rgba(45, 25, 20, 0.9);
-  transform: translateX(10px);
-  border-left: 5px solid #fff3b0 !important;
+  background: rgba(255,215,0,0.1);
+  border-left: 4px solid #fff3b0;
 }
 
 .timeline-item h3 {
-  color: #ffd700 !important;
+  color: #ffd700;
   font-family: 'Playfair Display', serif;
   font-size: 24px;
   margin: 0;
 }
 
 .timeline-item p {
-  color: #e0e0e0 !important;
+  color: #e0e0e0;
   font-size: 16px;
   margin: 8px 0 0;
 }
 
 /* ---------- REASONS CARDS ---------- */
 .reason-card {
-  background: rgba(26, 15, 12, 0.9);
+  background: rgba(255,215,0,0.03);
   padding: 15px;
   border-radius: 12px;
   text-align: center;
   cursor: pointer;
-  border: 1px solid #4a2a20;
-  transition: 0.3s;
+  border: 1px solid #4a3a1a;
+  transition: 0.2s;
 }
 
 .reason-card:hover {
   border-color: #ffd700;
-  background: rgba(45, 25, 20, 0.95);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(255,215,0,0.2);
+  background: rgba(255,215,0,0.08);
 }
 
 .reason-cover {
-  background: linear-gradient(145deg, #4a2a20, #2a1a15);
+  background: #2a1a0a;
   color: #ffd700;
   padding: 12px;
-  border-radius: 10px;
+  border-radius: 8px;
   font-weight: 600;
-  border: 1px solid #6b4a3a;
+  border: 1px solid #6b4a1a;
 }
 
-/* ---------- FINAL SCREEN ---------- */
+/* ---------- FINAL SCREEN - CLEAN & ELEGANT ---------- */
 #final{
   display:none;
   height:100vh;
@@ -332,120 +261,74 @@ h2{
 
 .photo-container {
   position:relative;
-  margin-bottom:25px;
+  margin-bottom:20px;
 }
 
 .photo{
-  width:220px;
-  height:220px;
+  width:200px;
+  height:200px;
   border-radius:50%;
-  border:4px solid #ffd700;
+  border:3px solid #ffd700;
   object-fit:cover;
-  box-shadow:0 0 60px rgba(255,215,0,0.4);
-  animation:royalFloat 4s ease-in-out infinite;
-}
-
-@keyframes royalFloat{
-  0%,100%{transform:translateY(0px) scale(1);}
-  50%{transform:translateY(-12px) scale(1.02);}
+  box-shadow:0 0 30px rgba(255,215,0,0.3);
 }
 
 .letter{
-  background: rgba(18, 10, 8, 0.95);
-  padding:45px 55px;
-  border-radius:40px;
+  background: rgba(10,5,4,0.95);
+  padding:35px 45px;
+  border-radius:20px;
   font-family:'Dancing Script',cursive;
-  font-size:34px;
+  font-size:30px;
   color: #ffd700;
-  box-shadow:0 0 80px rgba(255,215,0,0.25);
   line-height:1.7;
-  border:2px solid #ffd700;
-  backdrop-filter:blur(10px);
-  max-width:650px;
+  border:1px solid #ffd700;
+  max-width:600px;
   width:90%;
   margin:0 auto;
-  position:relative;
-  max-height:65vh;
+  max-height:60vh;
   overflow-y:auto;
-  text-shadow: 0 0 10px rgba(255,215,0,0.3);
 }
 
 .letter::before{
-  content:'✦';
+  content:'“';
   position:absolute;
-  top:-30px;
-  left:30px;
-  font-size:80px;
-  color: #ffd700;
+  top:-10px;
+  left:20px;
+  font-size:60px;
+  color: rgba(255,215,0,0.2);
   font-family:serif;
-  opacity:0.4;
-  transform:rotate(15deg);
-}
-
-.letter::after{
-  content:'✦';
-  position:absolute;
-  bottom:-30px;
-  right:30px;
-  font-size:80px;
-  color: #ffd700;
-  font-family:serif;
-  opacity:0.4;
-  transform:rotate(-15deg);
 }
 
 .line{
   opacity:0;
-  animation:royalReveal 0.8s forwards;
+  animation:fadeIn 0.6s forwards;
 }
 
-@keyframes royalReveal{
-  to{opacity:1; text-shadow: 0 0 15px rgba(255,215,0,0.5);}
+@keyframes fadeIn{
+  to{opacity:1;}
 }
 
-/* ---------- PHOTO HEARTS ---------- */
-.photo-heart{
-  position:fixed;
-  bottom:-100px;
-  width:70px;
-  height:70px;
-  border-radius:50%;
-  object-fit:cover;
-  border:3px solid #ffd700;
-  box-shadow:0 0 40px rgba(255,215,0,0.5);
-  animation:royalFloatUp 10s linear forwards;
-  z-index:1000;
-  pointer-events:none;
-  filter: brightness(1.1) contrast(1.2);
-}
-
-@keyframes royalFloatUp{
-  to{
-    transform:translateY(-140vh) rotate(1080deg);
-    opacity:0;
-    box-shadow:0 0 80px rgba(255,215,0,0.8);
-  }
-}
-
-/* ---------- GOLDEN HEARTS ---------- */
+/* ---------- PINK HEARTS ONLY - FLOATING ---------- */
 .heart{
   position:fixed;
   bottom:-20px;
-  color: #ffd700;
-  font-size:32px;
-  animation:goldenFloat 7s linear forwards;
+  color: #ff69b4; /* PINK! */
+  font-size:28px;
+  animation:floatUp 6s linear forwards;
   z-index:1000;
   pointer-events:none;
-  text-shadow:0 0 30px rgba(255,215,0,0.9);
+  text-shadow:0 0 15px rgba(255,105,180,0.7);
 }
 
-@keyframes goldenFloat{
+@keyframes floatUp{
   to{
-    transform:translateY(-130vh) scale(1.6);
+    transform:translateY(-120vh);
     opacity:0;
-    text-shadow:0 0 60px rgba(255,215,0,1);
   }
 }
+
+/* ---------- NO PHOTO CIRCLES - REMOVED COMPLETELY ---------- */
+/* photo-heart class DELETED - no small circles */
 
 /* ---------- LOVE METER ---------- */
 #loveMeter {
@@ -453,26 +336,25 @@ h2{
   position: fixed;
   top: 20px;
   right: 20px;
-  background: rgba(10, 5, 4, 0.95);
-  padding: 15px 25px;
-  border-radius: 50px;
+  background: rgba(0,0,0,0.9);
+  padding: 12px 20px;
+  border-radius: 40px;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
   z-index: 200;
-  backdrop-filter: blur(5px);
-  border: 1.5px solid #ffd700;
-  box-shadow: 0 0 40px rgba(255,215,0,0.2);
+  border: 1px solid #ffd700;
 }
 
 #loveMeter span {
   color: #ffd700;
   font-weight: 600;
+  font-size: 16px;
 }
 
 .meter-bar {
-  width: 150px;
-  height: 12px;
-  background: #2a1a15;
+  width: 120px;
+  height: 8px;
+  background: #2a1a0a;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -488,6 +370,7 @@ h2{
 #lovePercentage {
   color: #ffd700;
   font-weight: 600;
+  font-size: 16px;
 }
 
 /* ---------- CONFETTI CANVAS ---------- */
@@ -503,28 +386,22 @@ canvas{
 
 /* ---------- SCROLLBAR ---------- */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #1a0f0c;
+  background: #0a0504;
 }
 ::-webkit-scrollbar-thumb {
   background: #ffd700;
   border-radius: 10px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #fff3b0;
-}
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width:768px){
-  .letter{font-size:28px;padding:30px 35px;}
-  .photo{width:180px;height:180px;}
+  .letter{font-size:26px;padding:25px 30px;}
+  .photo{width:170px;height:170px;}
   h2{font-size:2.5em;}
   button{padding:16px 35px;font-size:22px;}
-  #memories{font-size:20px;padding:15px 25px;}
-  .heart{font-size:30px;}
-  .photo-heart{width:55px;height:55px;}
 }
 </style>
 </head>
@@ -543,7 +420,7 @@ canvas{
 
   <div class="btnRow">
     <button id="yes">YES ❤️</button>
-    <button id="no">NO ✦</button>
+    <button id="no">NO ❌</button>
   </div>
 </div>
 
@@ -564,66 +441,60 @@ canvas{
   <div class="modal-content">
     <span class="close-modal">&times;</span>
     
-    <h2 style="color: #ffd700; font-family: 'Playfair Display', serif; font-size: 48px; margin-top: 0; margin-bottom: 15px; text-align: center; text-shadow: 0 0 30px rgba(255,215,0,0.7); letter-spacing: 4px; border-bottom: 2px solid #ffd700; padding-bottom: 20px;">
-      ✦ BEAUTIFUL MEMORIES ✦
+    <h2 style="color: #ffd700; font-family: 'Playfair Display', serif; font-size: 42px; margin-top: 0; margin-bottom: 10px; text-align: center; border-bottom: 1px solid #ffd700; padding-bottom: 15px;">
+      BEAUTIFUL MEMORIES
     </h2>
     
-    <p style="color: #e0c080; text-align: center; font-size: 20px; margin-bottom: 40px; font-family: 'Dancing Script', cursive;">
-      Our journey together, captured in gold ✨
+    <p style="color: #e0c080; text-align: center; font-size: 18px; margin-bottom: 30px; font-family: 'Dancing Script', cursive;">
+      Our journey together ❤️
     </p>
     
-    <div style="margin: 40px 0;">
-      <div class="timeline-item" style="display:flex; align-items:center; gap:20px;">
-        <span style="font-size:40px; color: #ffd700;">💑</span>
-        <div>
-          <h3>The Day We Met</h3>
-          <p>When our story began under the stars... ✨</p>
-        </div>
+    <div style="margin: 30px 0;">
+      <div class="timeline-item">
+        <span style="font-size:32px; color: #ffd700; display:block; margin-bottom:10px;">💑</span>
+        <h3>The Day We Met</h3>
+        <p>When our story began... ✨</p>
       </div>
       
-      <div class="timeline-item" style="display:flex; align-items:center; gap:20px;">
-        <span style="font-size:40px; color: #ffd700;">💍</span>
-        <div>
-          <h3>Our Wedding</h3>
-          <p>The most beautiful day of my life ❤️</p>
-        </div>
+      <div class="timeline-item">
+        <span style="font-size:32px; color: #ffd700; display:block; margin-bottom:10px;">💍</span>
+        <h3>Our Wedding</h3>
+        <p>The best day of my life ❤️</p>
       </div>
       
-      <div class="timeline-item" style="display:flex; align-items:center; gap:20px;">
-        <span style="font-size:40px; color: #ffd700;">🏠</span>
-        <div>
-          <h3>Building Our Home</h3>
-          <p>Every moment with you is precious 🏡</p>
-        </div>
+      <div class="timeline-item">
+        <span style="font-size:32px; color: #ffd700; display:block; margin-bottom:10px;">🏠</span>
+        <h3>Building Our Home</h3>
+        <p>Every moment with you is precious 🏡</p>
       </div>
     </div>
     
-    <h3 style="color: #ffd700; margin-top: 50px; margin-bottom: 25px; text-align: center; font-size: 32px; font-family: 'Playfair Display', serif; text-shadow: 0 0 20px rgba(255,215,0,0.5);">
-      ✦ 100 REASONS I LOVE YOU ✦
+    <h3 style="color: #ffd700; margin-top: 40px; margin-bottom: 20px; text-align: center; font-size: 28px; font-family: 'Playfair Display', serif;">
+      100 REASONS I LOVE YOU
     </h3>
     
-    <div id="reasonsGrid" style="display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin:30px 0;"></div>
+    <div id="reasonsGrid" style="display:grid; grid-template-columns:repeat(2,1fr); gap:15px; margin:20px 0;"></div>
   </div>
 </div>
 
-<!-- ========= FINAL SCREEN ========= -->
+<!-- ========= FINAL SCREEN - CLEAN & READABLE ========= -->
 <div id="final">
   <div class="photo-container">
-    <img src="siri.jpg" class="photo" id="wifePhoto" onerror="this.src='https://via.placeholder.com/220?text=Siri❤️'">
+    <img src="siri.jpg" class="photo" id="wifePhoto" onerror="this.src='https://via.placeholder.com/200?text=Siri❤️'">
   </div>
   
   <div class="letter">
-    <div class="line" style="animation-delay:0s">Dear Siri,</div><br>
-    <div class="line" style="animation-delay:.6s">Subscription renewed successfully ✦</div>
-    <div class="line" style="animation-delay:1.2s">No cancellation allowed forever ✦</div><br>
-    <div class="line" style="animation-delay:1.8s">Jokes apart…</div>
-    <div class="line" style="animation-delay:2.4s">Happy anniversary my love Siri ❤️</div><br>
-    <div class="line" style="animation-delay:3s">You're not just my wife,</div>
-    <div class="line" style="animation-delay:3.3s">you're my best friend,</div>
-    <div class="line" style="animation-delay:3.6s">my peace, my happiness,</div>
-    <div class="line" style="animation-delay:3.9s">and my forever. ✦</div><br>
-    <div class="line" style="animation-delay:4.4s">Love you always & forever ❤️</div>
-    <div class="line" style="animation-delay:4.8s">– Vasu</div>
+    <div class="line" style="animation-delay:0.2s">Dear Siri,</div>
+    <div class="line" style="animation-delay:0.5s">Subscription renewed successfully 🎁</div>
+    <div class="line" style="animation-delay:0.8s">No cancellation allowed forever 😊</div>
+    <div class="line" style="animation-delay:1.1s">Jokes apart...</div>
+    <div class="line" style="animation-delay:1.4s">Happy anniversary my love Siri ❤️</div>
+    <div class="line" style="animation-delay:1.7s">You're not just my wife,</div>
+    <div class="line" style="animation-delay:2.0s">you're my best friend,</div>
+    <div class="line" style="animation-delay:2.3s">my peace, my happiness,</div>
+    <div class="line" style="animation-delay:2.6s">and my forever. ❤️</div>
+    <div class="line" style="animation-delay:2.9s">Love you always & forever ❤️</div>
+    <div class="line" style="animation-delay:3.2s">– Vasu</div>
   </div>
 </div>
 
@@ -633,13 +504,12 @@ const noBtn = document.getElementById("no");
 const yesBtn = document.getElementById("yes");
 
 const msgs = [
-  "Nice try ✦",
+  "Nice try 😜",
   "No cancellation 🚫",
-  "Lifetime plan only ✦",
+  "Lifetime plan only ❤️",
   "Marriage is non-refundable ✦",
-  "Press YES madam ✦",
-  "You know you want to! ✦",
-  "Forever with me? ✦"
+  "Press YES madam ❤️",
+  "Forever with me? 💕"
 ];
 
 let i = 0;
@@ -648,7 +518,7 @@ let grow = 1;
 function escape() {
   // SHAKE EFFECT
   noBtn.classList.add('shake');
-  setTimeout(() => noBtn.classList.remove('shake'), 700);
+  setTimeout(() => noBtn.classList.remove('shake'), 500);
   
   // MOVE TO RANDOM POSITION
   noBtn.style.position = "fixed";
@@ -662,8 +532,8 @@ function escape() {
   grow += 0.1;
   yesBtn.style.transform = `scale(${grow})`;
   
-  // CONFETTI BURST
-  shootConfetti(12, yesBtn.offsetLeft + yesBtn.offsetWidth/2, yesBtn.offsetTop);
+  // PINK CONFETTI BURST
+  shootConfetti(8, yesBtn.offsetLeft + yesBtn.offsetWidth/2, yesBtn.offsetTop);
 }
 
 noBtn.addEventListener("click", escape);
@@ -672,7 +542,7 @@ noBtn.addEventListener("touchstart", escape);
 // Shake on hover
 noBtn.addEventListener("mouseover", function() {
   this.classList.add('shake');
-  setTimeout(() => this.classList.remove('shake'), 500);
+  setTimeout(() => this.classList.remove('shake'), 400);
 });
 
 /* ---------- YES CLICK - MAIN EVENT ---------- */
@@ -697,10 +567,9 @@ yesBtn.onclick = function() {
     console.log("Audio play failed:", e);
   }
   
-  // START ALL EFFECTS
-  startGoldenConfetti();
-  startGoldenHearts();
-  startPhotoHearts();
+  // START PINK HEARTS AND CONFETTI
+  startPinkHearts();
+  startConfetti();
   increaseLoveMeter();
   populateReasons();
 };
@@ -716,26 +585,19 @@ function increaseLoveMeter() {
 /* ---------- 100 REASONS ---------- */
 function populateReasons() {
   const reasons = [
-    "Your smile lights up my darkness", "Your laugh is my favorite melody", 
-    "Your kindness has no limits", "Your strength inspires me",
-    "The way you care for everyone", "Your patience with me", 
-    "Your beautiful soul", "Your warm hugs",
-    "You believe in my dreams", "You make me a better man", 
-    "Your passion for life", "Your voice calms me",
-    "You understand me without words", "You are my peace", 
-    "You are beautiful inside out", "You support me unconditionally",
-    "You are my best friend", "You forgive my mistakes",
-    "You make our house a home", "You love me for who I am",
-    "Your eyes when you smile", "The way you say my name", 
-    "Your morning voice", "How you hold my hand",
-    "Your courage", "Your honesty", "Your loyalty", "Your beautiful heart"
+    "Your smile", "Your laugh", "Your kindness", "Your strength",
+    "The way you care", "Your patience", "Your beautiful eyes", "Your hugs",
+    "You believe in me", "You make me better", "Your voice", "Your understanding",
+    "You are my peace", "You are beautiful", "You support my dreams",
+    "You are my best friend", "You forgive me", "You make our house a home",
+    "You love me unconditionally", "Your courage", "Your honesty", "Your loyalty"
   ];
   
   let html = '';
-  for(let i = 0; i < 28; i++) {
+  for(let i = 0; i < 22; i++) {
     let r = reasons[i % reasons.length];
     html += `
-      <div class="reason-card" onclick="this.innerHTML='<div style=\\'color: #ffd700; font-weight:600; padding:15px; font-size:16px; text-shadow:0 0 10px rgba(255,215,0,0.3);\\'>✦ ${r} ✦</div>'; shootConfetti(8);">
+      <div class="reason-card" onclick="this.innerHTML='<div style=\\'color: #ffd700; font-weight:600; padding:15px;\\'>❤️ ${r}</div>'; shootConfetti(5);">
         <div class="reason-cover">❤️ CLICK TO REVEAL</div>
       </div>
     `;
@@ -743,57 +605,26 @@ function populateReasons() {
   document.getElementById('reasonsGrid').innerHTML = html;
 }
 
-/* ---------- FLOATING PHOTOS ---------- */
-const photoFiles = [
-  "1.jpg", "2.jpg", "3.jpg", "4.JPG", "5.JPG", "6.JPG", "7.JPG", 
-  "8.JPG", "9.JPG", "10.JPG", "11.JPG", "12.jpg", "13.jpg"
-];
-
-function createPhotoHeart() {
-  const photo = document.createElement("img");
-  photo.className = "photo-heart";
-  
-  const randomPhoto = photoFiles[Math.floor(Math.random() * photoFiles.length)];
-  photo.src = randomPhoto;
-  
-  photo.style.left = Math.random() * 100 + "vw";
-  photo.style.bottom = "-100px";
-  
-  const size = Math.floor(Math.random() * 50) + 60;
-  photo.style.width = size + "px";
-  photo.style.height = size + "px";
-  photo.style.animationDuration = (Math.random() * 4 + 9) + "s";
-  
-  document.body.appendChild(photo);
-  setTimeout(() => photo.remove(), 13000);
-}
-
-function startPhotoHearts() {
-  for(let j = 0; j < 13; j++) {
-    setTimeout(createPhotoHeart, j * 180);
-  }
-  setInterval(createPhotoHeart, 600);
-}
-
-/* ---------- GOLDEN HEARTS ---------- */
-function createGoldenHeart() {
+/* ---------- PINK HEARTS ONLY - NO PHOTO CIRCLES ---------- */
+function createPinkHeart() {
   const h = document.createElement("div");
   h.className = "heart";
   
-  const hearts = ["❤️", "✦", "✨", "💛", "💫", "⭐", "🌟", "💝"];
+  const hearts = ["❤️", "💖", "💗", "💓", "💕", "💘", "💝"];
   h.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
   
   h.style.left = Math.random() * 100 + "vw";
   h.style.animationDuration = (Math.random() * 3 + 5) + "s";
-  h.style.fontSize = (Math.random() * 20 + 30) + "px";
+  h.style.fontSize = (Math.random() * 20 + 25) + "px";
+  h.style.color = "#ff69b4"; // PINK!
   
   document.body.appendChild(h);
-  setTimeout(() => h.remove(), 7000);
+  setTimeout(() => h.remove(), 6000);
 }
 
-function startGoldenHearts() {
-  for(let j = 0; j < 40; j++) setTimeout(createGoldenHeart, j * 70);
-  setInterval(createGoldenHeart, 180);
+function startPinkHearts() {
+  for(let j = 0; j < 30; j++) setTimeout(createPinkHeart, j * 80);
+  setInterval(createPinkHeart, 200);
 }
 
 /* ---------- CONFETTI ---------- */
@@ -814,11 +645,12 @@ class Particle {
   constructor(x, y) {
     this.x = x || Math.random() * canvas.width;
     this.y = y || Math.random() * canvas.height;
-    this.vx = Math.random() * 6 - 3;
-    this.vy = Math.random() * 6 - 3;
-    this.size = Math.random() * 8 + 6;
+    this.vx = Math.random() * 5 - 2.5;
+    this.vy = Math.random() * 5 - 2.5;
+    this.size = Math.random() * 6 + 4;
     
-    const colors = ['#ffd700', '#f0b000', '#daa520', '#b8860b', '#8b0000', '#a52a2a', '#cd853f'];
+    // Pink & Gold confetti
+    const colors = ['#ff69b4', '#ff1493', '#ffb6c1', '#ffd700', '#f0b000'];
     this.color = colors[Math.floor(Math.random() * colors.length)];
     this.life = 1;
   }
@@ -827,7 +659,7 @@ class Particle {
     this.x += this.vx;
     this.y += this.vy;
     this.vy += 0.1;
-    this.life -= 0.008;
+    this.life -= 0.01;
     return this.life > 0 && this.y < canvas.height + 50;
   }
   
@@ -849,9 +681,9 @@ function shootConfetti(count = 10, x = canvas.width / 2, y = canvas.height / 2) 
   }
 }
 
-function startGoldenConfetti() {
-  for(let i = 0; i < 150; i++) {
-    setTimeout(() => shootConfetti(6, Math.random() * canvas.width, Math.random() * canvas.height / 2), i * 15);
+function startConfetti() {
+  for(let i = 0; i < 100; i++) {
+    setTimeout(() => shootConfetti(5, Math.random() * canvas.width, Math.random() * canvas.height / 2), i * 20);
   }
 }
 
@@ -895,7 +727,6 @@ window.onclick = function(e) {
 };
 
 /* ---------- INITIAL SETUP ---------- */
-// Set initial canvas size
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
